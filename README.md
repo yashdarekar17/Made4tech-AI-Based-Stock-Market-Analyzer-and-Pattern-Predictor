@@ -1,0 +1,1 @@
+# Made4tech-AI-Based-Stock-Market-Analyzer-and-Pattern-Predictor
