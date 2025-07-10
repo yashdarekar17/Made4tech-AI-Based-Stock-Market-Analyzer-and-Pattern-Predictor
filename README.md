@@ -40,7 +40,7 @@ A full-stack web platform that uses AI to detect stock market trends, predict fu
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/stock-analyzer-ai.git
+git clone https://github.com/yashdarekar17/Made4tech-AI-Based-Stock-Market-Analyzer-and-Pattern-Predictor.git
 cd AI-stock-analyzer
 npm install
 npm run dev
