@@ -1,0 +1,16 @@
+{
+  "name": "ai-stock-analyzer-backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Made4tech",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.16.2"
+  }
+}
