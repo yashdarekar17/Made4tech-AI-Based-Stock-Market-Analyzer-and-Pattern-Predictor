@@ -1,106 +1,102 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { useEffect, useRef } from "react";
 import {
   Chart as ChartJS,
   LineElement,
-  CategoryScale,
   LinearScale,
+  CategoryScale,
   PointElement,
   Tooltip,
   Legend,
-} from 'chart.js';
+  Filler,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  LinearScale,
+  CategoryScale,
+  PointElement,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 const StockChart = () => {
-  const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-  const priceData = [150, 152, 149, 155, 158];
-  const volumeData = [5000, 7000, 6500, 8000, 9000];
-  const patternOverlay = [null, null, 149, null, null]; // AI pattern point
+  const chartRef = useRef(null);
 
   const data = {
-    labels,
+    labels: [
+      "11:30",
+      "12:00",
+      "12:30",
+      "13:00",
+      "13:30",
+      "14:00",
+      "14:30",
+      "15:00",
+      "15:30",
+      "16:00",
+      "16:30",
+      "17:00",
+      "17:30",
+      "18:00",
+    ],
     datasets: [
       {
-        label: 'Price',
-        data: priceData,
-        borderColor: '#22c55e', // Green for upward trend
-        backgroundColor: 'rgba(34, 197, 94, 0.1)',
-        tension: 0.4,
-        yAxisID: 'y',
-      },
-      {
-        label: 'Volume',
-        data: volumeData,
-        borderColor: '#60a5fa', // Blue
-        backgroundColor: 'rgba(96, 165, 250, 0.1)',
+        label: "Market",
+        data: [6255, 6248, 6270, 6288, 6300, 6292, 6305, 6310, 6320, 6335, 6328, 6330, 6280, 6290],
+        fill: true,
+        borderColor: "#089981",
+        backgroundColor: "rgba(34, 197, 94, 0.1)",
         tension: 0.3,
-        yAxisID: 'y1',
-      },
-      {
-        label: 'AI Pattern',
-        data: patternOverlay,
-        pointRadius: 6,
-        pointBackgroundColor: '#facc15', // Yellow
-        type: 'line',
-        borderColor: 'transparent',
-        showLine: false,
-        yAxisID: 'y',
+        pointRadius: 0,
       },
     ],
   };
 
   const options = {
     responsive: true,
-    interaction: {
-      mode: 'index',
-      intersect: false,
-    },
-    stacked: false,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top',
-        labels: {
-          color: '#fff', // White labels
-        },
+        display: false,
+      },
+      tooltip: {
+        mode: "index",
+        intersect: false,
       },
     },
+    interaction: {
+      mode: "nearest",
+      axis: "x",
+      intersect: false,
+    },
     scales: {
-      y: {
-        type: 'linear',
-        position: 'left',
-        ticks: {
-          color: '#fff',
-        },
-        grid: {
-          color: 'rgba(255, 255, 255, 0.1)',
-        },
-      },
-      y1: {
-        type: 'linear',
-        position: 'right',
-        grid: {
-          drawOnChartArea: false,
-        },
-        ticks: {
-          color: '#fff',
-        },
-      },
       x: {
-        ticks: {
-          color: '#fff',
-        },
         grid: {
-          color: 'rgba(255, 255, 255, 0.1)',
+          display: false,
+        },
+        ticks: {
+          color: "#64748b",
+        },
+      },
+      y: {
+        grid: {
+          color: "#e2e8f0",
+        },
+        ticks: {
+          color: "#64748b",
         },
       },
     },
   };
 
   return (
-    <div className="bg-[#111827] p-6 rounded-2xl shadow-md max-w-[95vw] m-auto mt-6">
-      <h2 className="text-white text-xl font-semibold mb-4">📈 Stock Performance Overview</h2>
-      <Line data={data} options={options} />
+    <div className="bg-white dark:bg-[#111827] p-4  shadow-md max-w-[99vw] m-auto mt-6">
+      <h2 className="text-xl text-gray-900 dark:text-white font-semibold mb-4">Market summary Analysis</h2>
+      <div className="h-[400px]">
+        <Line ref={chartRef} data={data} options={options} />
+      </div>
     </div>
   );
 };

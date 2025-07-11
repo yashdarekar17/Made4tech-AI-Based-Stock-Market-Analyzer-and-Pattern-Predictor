@@ -4,6 +4,8 @@ import SummaryCards from './SummaryCards'
 import StockChart from './StockChart'
 import TrendPredictionPanel from './TrendPredictionPanel'
 import Footer from './Footer'
+import CryptoSummaryWithChart from "./CryptoSummaryWithChart";
+import MarketSummary from './MarketSummary'
 
 
 const predictions = [
@@ -17,6 +19,19 @@ const predictions = [
   { stock: "HDFC Bank (HDFCB)", trend: "Uptrend", confidence: 88.5 },
   { stock: "Nvidia (NVDA)", trend: "Uptrend", confidence: 93.2 },
 ];
+const dummyCrypto = {
+    name: "Bitcoin",
+    symbol: "BTC",
+    logo: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+    price: 64890.25,
+    change24h: -2.34,
+    marketCap: 1270000000000,
+    volume24h: 34000000000,
+    supply: 19400000,
+    alert: false,
+    sparkline: [64000, 64200, 64500, 64800, 65000, 64890, 64600, 64250, 64000],
+  };
+  
 
 const Dashboard = () => {
   return (
@@ -35,7 +50,16 @@ const Dashboard = () => {
         />
       ))}
     </div>
-    <Footer/>
+    <div className="flex flex-col min-h-screen bg-[#0f172a]">
+  <main className="flex-grow px-4 pt-4 pb-2 gap-17">
+  <h1 className="text-2xl text-white font-bold tracking-tight mb-4 border-b border-gray-700 pb-2">
+  📈 Crypto Market Summary
+</h1>
+
+    <MarketSummary />
+  </main>
+  <Footer />
+</div>
     </div>
     
     

@@ -1,9 +1,9 @@
 import React from "react";
-// import { FaFacebookF, FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#111827] text-white px-6 py-10 border-t border-gray-800">
+    <footer className="bg-[#111827] text-white px-6 py-10 border-t border-gray-800 ">
       <div className="max-w-[85vw] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
         {/* TRADING SUPPORT */}
         <div>
@@ -42,8 +42,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* SOCIAL MEDIA */}
-        {/* <div>
+       
+         <div>
           <h2 className="font-semibold text-yellow-400 mb-3">FOLLOW US</h2>
           <div className="flex space-x-4 text-xl mt-2">
             <a href="#" className="text-gray-300 hover:text-green-400"><FaGithub /></a>
@@ -51,7 +51,7 @@ const Footer = () => {
             <a href="#" className="text-gray-300 hover:text-sky-400"><FaTwitter /></a>
             <a href="#" className="text-gray-300 hover:text-blue-400"><FaLinkedin /></a>
           </div>
-        </div> */}
+        </div>
       </div>
 
       {/* Bottom Copyright */}
