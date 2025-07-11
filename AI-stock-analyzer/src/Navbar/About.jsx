@@ -1,6 +1,12 @@
+import Footer from "../Footer";
+import Header from "../Header";
+
 const AboutAIPage = () => {
     return (
-      <div className="bg-gray-900 min-h-screen text-white py-12 px-6 md:px-16 max-w-6xl mx-auto">
+      <>
+      <Header/>
+
+     <div className="bg-gray-900 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
         <h1 className="text-4xl font-bold text-yellow-400 text-center mb-10">
           📊 How Our AI Predicts Market Trends
         </h1>
@@ -67,6 +73,11 @@ const AboutAIPage = () => {
           </div>
         </section>
       </div>
+
+      <Footer/>
+
+      </>
+
     );
   };
   
