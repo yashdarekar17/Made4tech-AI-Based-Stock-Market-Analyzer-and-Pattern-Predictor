@@ -21,6 +21,7 @@ const predictions = [
 const Dashboard = () => {
   return (
     <>
+    <div className='bg-gray-800'>
     <Header/>
     <SummaryCards/>
     <StockChart/>
@@ -35,6 +36,8 @@ const Dashboard = () => {
       ))}
     </div>
     <Footer/>
+    </div>
+    
     
     </>
     

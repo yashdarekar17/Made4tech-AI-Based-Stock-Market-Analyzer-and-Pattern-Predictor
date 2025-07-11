@@ -29,7 +29,7 @@ const SummaryCards = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6 px-6 bg-[#0f172a]">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6 px-6 bg-gray-900">
       {summaryData.map((item, index) => (
         <div
           key={index}

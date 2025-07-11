@@ -6,7 +6,7 @@ const AboutAIPage = () => {
       <>
       <Header/>
 
-     <div className="bg-gray-900 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
+     <div className="bg-gray-800 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
         <h1 className="text-4xl font-bold text-yellow-400 text-center mb-10">
           📊 How Our AI Predicts Market Trends
         </h1>

@@ -132,10 +132,10 @@ const Predictions = () => {
 
       const chartData = values.reverse().map((item, index) => {
         const actual = parseFloat(item.close);
-        const predicted = actual * (1 + 0.01 * Math.sin(index / 5)); // Simulated prediction
+        const predicted = actual * (1 + 0.01 * Math.sin(index / 5));
         return {
           date: item.datetime,
-          actual: actual,
+          actual,
           predicted: parseFloat(predicted.toFixed(2)),
         };
       });
@@ -149,10 +149,7 @@ const Predictions = () => {
       const companyName = metaRes.data?.data?.[0]?.name || "Unknown Company";
 
       const randomConfidence = Math.floor(Math.random() * 20) + 80;
-      const trend =
-        chartData[chartData.length - 1].actual > chartData[0].actual
-          ? "Uptrend"
-          : "Downtrend";
+      const trend = chartData[chartData.length - 1].actual > chartData[0].actual ? "Uptrend" : "Downtrend";
 
       setTrendInfo({ trend, confidence: randomConfidence, companyName });
     } catch (err) {
@@ -178,96 +175,86 @@ const Predictions = () => {
 
   return (
     <>
-    <Header/>
-  <div className="bg-gray-800 min-h-screen p-6 text-white">
-      <TickerTimeSelector onSubmit={fetchStockData} />
+      <Header />
+      <div className="bg-gray-800 min-h-screen p-6 text-white">
+        <TickerTimeSelector onSubmit={fetchStockData} />
 
-      {loading && <p className="text-center mt-6">⏳ Loading...</p>}
+        {loading && <p className="text-center mt-6">⏳ Loading...</p>}
 
-      {trendInfo && (
-        <TrendCard
-          ticker={selectedTicker}
-          trend={trendInfo.trend}
-          confidence={trendInfo.confidence}
-          companyName={trendInfo.companyName}
-        />
-      )}
+        {trendInfo && (
+          <TrendCard
+            ticker={selectedTicker}
+            trend={trendInfo.trend}
+            confidence={trendInfo.confidence}
+            companyName={trendInfo.companyName}
+          />
+        )}
 
-      {/* Actual vs Predicted Chart */}
-      {stockData.length > 0 && (
-        <div className="mt-10 max-w-4xl mx-auto">
-          <h2 className="text-xl text-center font-semibold mb-4">
-            📉 Actual vs Predicted Trend for {selectedTicker}
-          </h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={stockData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" hide />
-              <YAxis domain={["auto", "auto"]} />
-              <Tooltip />
-              <Line type="monotone" dataKey="actual" name="Actual" stroke="#facc15" strokeWidth={2} />
-              <Line type="monotone" dataKey="predicted" name="Predicted" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      )}
+        {stockData.length > 0 && (
+          <div className="mt-10 max-w-4xl mx-auto">
+            <h2 className="text-xl text-center font-semibold mb-4">
+              📉 Actual vs Predicted Trend for {selectedTicker}
+            </h2>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={stockData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" hide />
+                <YAxis domain={["auto", "auto"]} />
+                <Tooltip />
+                <Line type="monotone" dataKey="actual" name="Actual" stroke="#facc15" strokeWidth={2} />
+                <Line type="monotone" dataKey="predicted" name="Predicted" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        )}
 
-      {/* Key Pattern Detection */}
-      {stockData.length > 0 && (
-        <div className="bg-gray-800 mt-10 p-6 rounded-xl max-w-3xl mx-auto text-white">
-          <h2 className="text-xl font-bold mb-2">📌 Key Pattern Detected</h2>
-          <p className="text-yellow-400 font-semibold">Double Bottom</p>
-          <p className="text-sm mt-2 text-gray-300">
-            A bullish reversal pattern typically seen after a prolonged downtrend.
-          </p>
-          <p className="mt-2">
-            🔍 Pattern Accuracy Score: <span className="font-bold text-green-400">91%</span>
-          </p>
-        </div>
-      )}
+        {stockData.length > 0 && (
+          <div className="bg-gray-800 mt-10 p-6 rounded-xl max-w-3xl mx-auto text-white">
+            <h2 className="text-xl font-bold mb-2">📌 Key Pattern Detected</h2>
+            <p className="text-yellow-400 font-semibold">Double Bottom</p>
+            <p className="text-sm mt-2 text-gray-300">
+              A bullish reversal pattern typically seen after a prolonged downtrend.
+            </p>
+            <p className="mt-2">
+              🔍 Pattern Accuracy Score: <span className="font-bold text-green-400">91%</span>
+            </p>
+          </div>
+        )}
 
-      {/* Sentiment Analysis */}
-      {stockData.length > 0 && (
-        <div className="bg-gray-800 mt-10 p-6 rounded-xl max-w-4xl mx-auto text-white">
-          <h2 className="text-xl font-bold mb-4">🧠 Sentiment Analysis</h2>
+        {stockData.length > 0 && (
+          <div className="bg-gray-800 mt-10 p-6 rounded-xl max-w-4xl mx-auto text-white">
+            <h2 className="text-xl font-bold mb-4">🧐 Sentiment Analysis</h2>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="w-full md:w-1/2 bg-gray-700 p-4 rounded-md text-center">
+                <h3 className="font-semibold mb-2 text-yellow-300">Sentiment Breakdown</h3>
+                <ResponsiveContainer width="100%" height={200}>
+                  <PieChart>
+                    <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={60} label>
+                      {pieData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                      ))}
+                    </Pie>
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
 
-          <div className="flex flex-col md:flex-row gap-6">
-            {/* Pie Chart */}
-            <div className="w-full md:w-1/2 bg-gray-700 p-4 rounded-md text-center">
-              <h3 className="font-semibold mb-2 text-yellow-300">Sentiment Breakdown</h3>
-              <ResponsiveContainer width="100%" height={200}>
-                <PieChart>
-                  <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={60} label>
-                    {pieData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index]} />
-                    ))}
-                  </Pie>
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Tag Cloud */}
-            <div className="w-full md:w-1/2 bg-gray-700 p-4 rounded-md">
-              <h3 className="font-semibold mb-2 text-yellow-300 text-center">Top Keywords</h3>
-              <div className="flex flex-wrap gap-2 justify-center mt-2">
-                {tagWords.map((word, i) => (
-                  <span
-                    key={i}
-                    className="px-2 py-1 bg-gray-900 text-white text-sm rounded-full shadow"
-                  >
-                    {word}
-                  </span>
-                ))}
+              <div className="w-full md:w-1/2 bg-gray-700 p-4 rounded-md">
+                <h3 className="font-semibold mb-2 text-yellow-300 text-center">Top Keywords</h3>
+                <div className="flex flex-wrap gap-2 justify-center mt-2">
+                  {tagWords.map((word, i) => (
+                    <span key={i} className="px-2 py-1 bg-gray-900 text-white text-sm rounded-full shadow">
+                      {word}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-    <Footer/>
+        )}
+      </div>
+      <Footer />
     </>
-
   );
 };
 
