@@ -10,6 +10,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from './Dashboard'
 import Predictions from './Navbar/Predictions'
 import Portfolio from './Navbar/Portfolio'
+import LoginPage from './login-signup/Login '
+import SignupPage from './login-signup/Signup'
 
 
 
@@ -20,10 +22,13 @@ const App = () => {
     
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Dashboard/>}></Route>
+    <Route path='/' element={<LoginPage/>}></Route>
+      <Route path='/dashboard' element={<Dashboard/>}></Route>
        <Route path='/Predictions' element={<Predictions/>}></Route>
       <Route path='/Portfolio' element={<Portfolio/>}></Route>
       <Route path='/About' element={<About/>}></Route> 
+      <Route path='/Signup' element={<SignupPage/>}></Route>
+
     </Routes>
     </BrowserRouter>
 

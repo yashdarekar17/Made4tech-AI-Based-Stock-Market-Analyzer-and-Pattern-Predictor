@@ -1,102 +1,40 @@
-import React, { useEffect, useRef } from "react";
-import {
-  Chart as ChartJS,
-  LineElement,
-  LinearScale,
-  CategoryScale,
-  PointElement,
-  Tooltip,
-  Legend,
-  Filler,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-
-ChartJS.register(
-  LineElement,
-  LinearScale,
-  CategoryScale,
-  PointElement,
-  Tooltip,
-  Legend,
-  Filler
-);
+import React, { useEffect } from "react";
 
 const StockChart = () => {
-  const chartRef = useRef(null);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      autosize: true, // this must stay true
+      symbol: "BITSTAMP:BTCUSD",
+      interval: "D",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "3",
+      hide_top_toolbar: true,
+      save_image: false,
+      support_host: "https://www.tradingview.com",
+    });
 
-  const data = {
-    labels: [
-      "11:30",
-      "12:00",
-      "12:30",
-      "13:00",
-      "13:30",
-      "14:00",
-      "14:30",
-      "15:00",
-      "15:30",
-      "16:00",
-      "16:30",
-      "17:00",
-      "17:30",
-      "18:00",
-    ],
-    datasets: [
-      {
-        label: "Market",
-        data: [6255, 6248, 6270, 6288, 6300, 6292, 6305, 6310, 6320, 6335, 6328, 6330, 6280, 6290],
-        fill: true,
-        borderColor: "#089981",
-        backgroundColor: "rgba(34, 197, 94, 0.1)",
-        tension: 0.3,
-        pointRadius: 0,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        mode: "index",
-        intersect: false,
-      },
-    },
-    interaction: {
-      mode: "nearest",
-      axis: "x",
-      intersect: false,
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          color: "#64748b",
-        },
-      },
-      y: {
-        grid: {
-          color: "#e2e8f0",
-        },
-        ticks: {
-          color: "#64748b",
-        },
-      },
-    },
-  };
+    const container = document.getElementById("tv-chart-container");
+    if (container) {
+      container.innerHTML = ""; // Clear old
+      container.appendChild(script);
+    }
+  }, []);
 
   return (
-    <div className="bg-white dark:bg-[#111827] p-4  shadow-md max-w-[99vw] m-auto mt-6">
-      <h2 className="text-xl text-gray-900 dark:text-white font-semibold mb-4">Market summary Analysis</h2>
-      <div className="h-[400px]">
-        <Line ref={chartRef} data={data} options={options} />
-      </div>
+    <div className="bg-white dark:bg-[#111827] text-black dark:text-white w-screen overflow-x-hidden px-0 ">
+      <h2 className="text-2xl text-white font-bold tracking-tight mb-6 mt-6 border-b border-gray-700 pb-2 w-[98vw] m-auto">
+      📈 Market Summary Analysis
+      </h2>
+
+      <div
+        id="tv-chart-container"
+        className="h-[500px] w-[100vw] overflow-hidden"
+      />
     </div>
   );
 };

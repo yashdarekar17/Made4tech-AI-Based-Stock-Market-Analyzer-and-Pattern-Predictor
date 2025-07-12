@@ -2,84 +2,78 @@ import Footer from "../Footer";
 import Header from "../Header";
 
 const AboutAIPage = () => {
-    return (
-      <>
-      <Header/>
+  return (
+    <>
+      <Header />
 
-     <div className="bg-gray-800 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
+      <div className="bg-gray-800 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
         <h1 className="text-4xl font-bold text-yellow-400 text-center mb-10">
-          📊 How Our AI Predicts Market Trends
+          How Our AI Predicts Market Trends
         </h1>
-  
+
         <section className="space-y-10 text-lg leading-relaxed text-gray-300">
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">🔁 LSTM (Long Short-Term Memory) Models</h2>
+            <h2 className="text-2xl font-semibold text-white mb-2">LSTM Models for Time-Series Forecasting</h2>
             <p>
-              We utilize <span className="font-semibold text-white">LSTM networks</span>, a type of recurrent neural network (RNN) ideal for sequence prediction tasks like stock price forecasting.
-              LSTMs are capable of learning long-term dependencies and understanding the context of time-series data, which is essential when analyzing historical stock price movements.
-              Our AI models are trained on multiple years of stock data to identify emerging patterns and predict future trends.
+              Our platform uses Long Short-Term Memory (LSTM) networks — a type of recurrent neural network (RNN) designed to handle time-series data effectively. These models excel at identifying long-term dependencies and patterns within historical stock prices, making them a strong foundation for forecasting market trends.
             </p>
           </div>
-  
+
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">📊 Technical Indicators Integration</h2>
+            <h2 className="text-2xl font-semibold text-white mb-2">Technical Indicators Integration</h2>
             <p>
-              We enhance our prediction accuracy by integrating widely-used <span className="font-semibold text-white">technical indicators</span> into our models. These include:
+              To improve prediction accuracy, we integrate a variety of technical indicators into our models. These include:
             </p>
             <ul className="list-disc list-inside mt-2 space-y-1">
-              <li><span className="text-white font-medium">Moving Averages (MA)</span> – Tracks the average price over time to spot trends.</li>
-              <li><span className="text-white font-medium">Relative Strength Index (RSI)</span> – Measures the speed and change of price movements to determine overbought or oversold conditions.</li>
-              <li><span className="text-white font-medium">MACD</span> – Shows the relationship between two moving averages to detect momentum shifts.</li>
-              <li><span className="text-white font-medium">Bollinger Bands</span> – Indicates price volatility and potential breakouts.</li>
+              <li><span className="text-white font-medium">Moving Averages (MA)</span> – Used to smooth out price data and identify overall trends.</li>
+              <li><span className="text-white font-medium">Relative Strength Index (RSI)</span> – Measures recent price changes to assess overbought or oversold conditions.</li>
+              <li><span className="text-white font-medium">MACD</span> – Helps track momentum by analyzing the relationship between two moving averages.</li>
+              <li><span className="text-white font-medium">Bollinger Bands</span> – Indicates price volatility and potential breakout points.</li>
             </ul>
             <p className="mt-2">
-              These indicators are used as inputs to our AI models, giving them a technical understanding of market behavior.
+              These indicators are factored into our models to provide deeper context on price action and market behavior.
             </p>
           </div>
-  
+
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">🧪 Backtesting for Accuracy</h2>
+            <h2 className="text-2xl font-semibold text-white mb-2">Model Backtesting and Validation</h2>
             <p>
-              Before any prediction is delivered, our models are validated using extensive <span className="font-semibold text-white">backtesting</span>. This means:
+              Before deployment, each AI model undergoes rigorous backtesting against historical data. This process involves:
             </p>
             <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>We run the model on past market data and compare predictions with actual results.</li>
-              <li>This helps us fine-tune model parameters and evaluate prediction accuracy.</li>
-              <li>Only high-performing models are used for real-time predictions, ensuring quality and trustworthiness.</li>
+              <li>Running predictions on past market scenarios and comparing them to actual outcomes.</li>
+              <li>Tuning model parameters for optimal accuracy.</li>
+              <li>Ensuring only consistently high-performing models are used in live environments.</li>
             </ul>
           </div>
-  
+
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">📰 Sentiment Analysis on News & Social Media</h2>
+            <h2 className="text-2xl font-semibold text-white mb-2">Sentiment Analysis on Market News</h2>
             <p>
-              Beyond numbers, our AI also understands the emotions driving the market through <span className="font-semibold text-white">sentiment analysis</span>. We analyze:
+              In addition to price data, we incorporate real-world sentiment signals using Natural Language Processing (NLP). Our models analyze:
             </p>
             <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>Financial news headlines and articles for sentiment trends.</li>
-              <li>Public opinions from platforms like <span className="font-semibold text-white">Twitter, Reddit (r/stocks), and investor forums</span>.</li>
-              <li>Quarterly earnings reports, press releases, and CEO interviews.</li>
+              <li>Financial news articles and earnings reports.</li>
+              <li>Public sentiment from platforms like Twitter, Reddit, and investor forums.</li>
+              <li>Statements from company executives and official press releases.</li>
             </ul>
             <p className="mt-2">
-              These sources are processed using NLP (Natural Language Processing) techniques to evaluate whether the sentiment is positive, negative, or neutral — influencing the AI's final prediction.
+              These insights help determine whether the market sentiment is trending positively, negatively, or remaining neutral—factors that can significantly influence short-term movements.
             </p>
           </div>
-  
+
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">🤖 A Unified AI System</h2>
+            <h2 className="text-2xl font-semibold text-white mb-2">An Integrated AI Framework</h2>
             <p>
-              Our prediction engine combines all these layers — LSTM sequence modeling, technical indicators, historical backtesting, and sentiment analysis — into a unified AI pipeline.
-              The result is a smarter, more accurate trend prediction system that empowers traders and investors with real-time, data-driven insights.
+              Our approach combines all elements—time-series modeling, technical analysis, sentiment evaluation, and rigorous testing—into a single, unified AI system. This comprehensive pipeline enables us to deliver timely and actionable market predictions, giving users an edge in their trading and investment decisions.
             </p>
           </div>
         </section>
       </div>
 
-      <Footer/>
+      <Footer />
+    </>
+  );
+};
 
-      </>
-
-    );
-  };
-  
-  export default AboutAIPage;
-  
+export default AboutAIPage;

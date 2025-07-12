@@ -6,6 +6,7 @@ import TrendPredictionPanel from './TrendPredictionPanel'
 import Footer from './Footer'
 import CryptoSummaryWithChart from "./CryptoSummaryWithChart";
 import MarketSummary from './MarketSummary'
+import {Link} from 'react-router-dom'
 
 
 const predictions = [
@@ -36,10 +37,13 @@ const dummyCrypto = {
 const Dashboard = () => {
   return (
     <>
-    <div className='bg-gray-800'>
+    <div className='bg-gray-800 bg-white dark:bg-[#0f172a] min-h-screen text-black dark:text-white'>
     <Header/>
     <SummaryCards/>
     <StockChart/>
+    <div>
+        <h1 className="text-2xl text-white font-bold tracking-tight mb-4 border-b border-gray-700 pb-2 mt-4 w-[97vw] m-auto ">📈 TOP PREDICTIONS OF THE DAY</h1>
+    </div> 
     <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {predictions.map((p, idx) => (
         <TrendPredictionPanel
@@ -49,7 +53,13 @@ const Dashboard = () => {
           confidence={p.confidence}
         />
       ))}
+      
     </div>
+    <div className='flex flex-col items-center justify-center mt-5 text-center'>
+        <p className='text-white font-semibold text-center'>Want to see more Predictions?Click below</p>
+       <Link to='/Predictions'> <button className='bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 mb-6'>More Predictions</button></Link>
+       
+      </div>
     <div className="flex flex-col min-h-screen bg-[#0f172a]">
   <main className="flex-grow px-4 pt-4 pb-2 gap-17">
   <h1 className="text-2xl text-white font-bold tracking-tight mb-4 border-b border-gray-700 pb-2">

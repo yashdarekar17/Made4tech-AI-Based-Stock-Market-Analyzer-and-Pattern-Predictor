@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import TrendPredictionPanel from '../TrendPredictionPanel'
 import {
   LineChart,
   Line,
@@ -20,6 +21,8 @@ import Footer from "../Footer";
 const TickerTimeSelector = ({ onSubmit }) => {
   const [ticker, setTicker] = useState("");
   const [timeRange, setTimeRange] = useState("1M");
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -106,6 +109,31 @@ const Predictions = () => {
   const [selectedTicker, setSelectedTicker] = useState("");
   const [trendInfo, setTrendInfo] = useState(null);
 
+  const predictions = [
+    // High-confidence predictions
+    { stock: "Apple (AAPL)", trend: "Uptrend", confidence: 92.5 },
+    { stock: "Nvidia (NVDA)", trend: "Uptrend", confidence: 93.2 },
+    { stock: "Reliance (RELI)", trend: "Uptrend", confidence: 90.7 },
+    { stock: "Google (GOOGL)", trend: "Uptrend", confidence: 89.1 },
+    { stock: "HDFC Bank (HDFCB)", trend: "Uptrend", confidence: 88.5 },
+    { stock: "Tesla (TSLA)", trend: "Downtrend", confidence: 86.4 },
+    { stock: "Infosys (INFY)", trend: "Downtrend", confidence: 84.3 },
+    { stock: "Meta (META)", trend: "Downtrend", confidence: 81.2 },
+    { stock: "Amazon (AMZN)", trend: "Uptrend", confidence: 78.9 },
+  
+    // Lower-confidence predictions
+    { stock: "Paytm (PAYTM)", trend: "Downtrend", confidence: 72.4 },
+    { stock: "Zomato (ZOM)", trend: "Uptrend", confidence: 69.8 },
+    { stock: "Tata Motors (TATAMOTORS)", trend: "Downtrend", confidence: 75.1 },
+    { stock: "Adani Power (ADANIPOWER)", trend: "Downtrend", confidence: 74.2 },
+    { stock: "ICICI Bank (ICICIB)", trend: "Uptrend", confidence: 73.5 },
+    { stock: "Bajaj Finance (BAJFINANCE)", trend: "Uptrend", confidence: 70.6 },
+    { stock: "JSW Steel (JSWSTEEL)", trend: "Downtrend", confidence: 71.9 },
+    { stock: "Axis Bank (AXISB)", trend: "Uptrend", confidence: 68.7 },
+    {stock: "Coal India (COALINDIA)",trend: "Downtrend", confidence: 66.5},
+  ];
+  
+
   const fetchStockData = async ({ ticker, timeRange }) => {
     const intervalMap = {
       "1D": "1min",
@@ -176,7 +204,7 @@ const Predictions = () => {
   return (
     <>
       <Header />
-      <div className="bg-gray-800 min-h-screen p-6 text-white">
+      <div className="bg-gray-800  p-6 text-white">
         <TickerTimeSelector onSubmit={fetchStockData} />
 
         {loading && <p className="text-center mt-6">⏳ Loading...</p>}
@@ -191,7 +219,7 @@ const Predictions = () => {
         )}
 
         {stockData.length > 0 && (
-          <div className="mt-10 max-w-4xl mx-auto">
+          <div className="mt-10 w-[95vw] mx-auto">
             <h2 className="text-xl text-center font-semibold mb-4">
               📉 Actual vs Predicted Trend for {selectedTicker}
             </h2>
@@ -252,6 +280,19 @@ const Predictions = () => {
             </div>
           </div>
         )}
+      </div>
+      <div>
+      <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {predictions.map((p, idx) => (
+        <TrendPredictionPanel
+          key={idx}
+          stock={p.stock}
+          trend={p.trend}
+          confidence={p.confidence}
+        />
+      ))}
+      
+    </div>
       </div>
       <Footer />
     </>
