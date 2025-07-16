@@ -4,9 +4,14 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { unfollowedStock } from "./Store/Followslice";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 function Followingpage() {
   const followstocks = useSelector(state => state.follow?.followedstocks ?? []);
   const dispatch =useDispatch();
+
+  useEffect(()=>{
+    localStorage.setItem("followstocks",JSON.stringify(followstocks));
+  },[followstocks])
 
   const handleUnfollow=(stock)=>{
     dispatch(unfollowedStock(stock),

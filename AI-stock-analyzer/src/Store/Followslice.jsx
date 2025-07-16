@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const savedfollowstocks = JSON.parse(localStorage.getItem("followedstocks")) || [];
+
 const Followslice = createSlice({
     name: 'follow',
     initialState:{
-       followedstocks:[]
+       followedstocks:savedfollowstocks
     },
     reducers:{
        followStock: (state , action) =>{
@@ -12,6 +14,7 @@ const Followslice = createSlice({
         );
         if(!alreadyExists){
             state.followedstocks.push(action.payload);
+            localStorage.setItem("followedstocks",JSON.stringify(state.followedstocks))
         }
        },
 
@@ -19,7 +22,10 @@ const Followslice = createSlice({
         state.followedstocks = state.followedstocks.filter(
             stock => stock.stock !== action.payload.stock
         )
+         localStorage.setItem("followedstocks",JSON.stringify(state.followedstocks))
        },
+
+
     }
 })
 

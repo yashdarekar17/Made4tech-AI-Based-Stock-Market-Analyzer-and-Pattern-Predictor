@@ -109,7 +109,7 @@ const Header = () => {
                 <button
                   onClick={() => handleNavigation('/')}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                >
+                > 
                   Login
                 </button>
                 <button
