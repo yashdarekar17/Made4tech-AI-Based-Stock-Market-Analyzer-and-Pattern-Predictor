@@ -3,6 +3,7 @@ import Coverpage from './Coverpage.png'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Stocksense3 from './Stocksense3.mp4'
+import { Link } from "react-router-dom";
 
 
 const LoginPage = () => {
@@ -31,7 +32,7 @@ const LoginPage = () => {
     className="w-full h-[690px] object-cover  shadow-lg"
   />
 </div>
-    <a href="/dashboard">
+      <Link to="/dashboard">
     <svg
   xmlns="http://www.w3.org/2000/svg"
   className="w-7 h-7 text-white cursor-pointer absolute top-4 right-4 hover:text-green-400 transition"
@@ -45,7 +46,7 @@ const LoginPage = () => {
   <line x1="18" y1="6" x2="6" y2="18" />
   <line x1="6" y1="6" x2="18" y2="18" />
 </svg>
-    </a>
+    </Link>
 
 
 
