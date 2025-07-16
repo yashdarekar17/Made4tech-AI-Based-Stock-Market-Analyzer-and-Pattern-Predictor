@@ -278,11 +278,15 @@ const Predictions = () => {
                 </div>
               </div>
             </div>
+            
           </div>
         )}
-      </div>
-      <div>
-      <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+<div>
+        <h1 className="text-2xl font-bold text-green-400 mb-4 border-b border-green-700 pb-2 mt-6 max-w-[97vw] m-auto">📈 Predictions </h1>
+    </div> 
+
+<div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {predictions.map((p, idx) => (
         <TrendPredictionPanel
           key={idx}
@@ -293,6 +297,9 @@ const Predictions = () => {
       ))}
       
     </div>
+      </div>
+      <div>
+      
       </div>
       <Footer />
     </>

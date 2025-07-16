@@ -20,13 +20,17 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setDarkMode(!darkMode)}
-      className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white p-2 rounded-full shadow-md transition duration-300"
+      className={`p-2 rounded-full shadow-md transition duration-300 
+        ${darkMode
+          ? "bg-gradient-to-br from-green-600 to-gray-800 text-white"
+          : "bg-gradient-to-br from-gray-200 to-green-100 text-gray-800"
+        }`}
       aria-label="Toggle Theme"
     >
       {darkMode ? (
-        <SunIcon className="w-6 h-6 text-yellow-400" />
+        <SunIcon className="w-6 h-6 text-yellow-400 transition duration-200" />
       ) : (
-        <MoonIcon className="w-6 h-6 text-gray-700" />
+        <MoonIcon className="w-6 h-6 text-green-700 transition duration-200" />
       )}
     </button>
   );

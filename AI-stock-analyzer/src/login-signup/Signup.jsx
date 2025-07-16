@@ -1,5 +1,8 @@
 import React from "react";
 import Coverpage from './Coverpage.png';
+import Stocksense from './S1.jpg'
+
+import Stocksense3 from './Stocksense3.mp4'
 import { Link } from "react-router-dom";
 
 
@@ -7,13 +10,18 @@ const SignupPage = () => {
   return (
     <div className="min-h-screen w-screen flex bg-[#0f172a] text-white">
       {/* LEFT SIDE - IMAGE */}
-      <div className="w-1/2 hidden md:block">
-        <img
-          src={Coverpage}
-          alt="Signup Visual"
-          className="object-cover w-full h-full"
-        />
-      </div>
+      {/* LEFT SIDE - VIDEO */}
+<div className="w-full md:w-1/2 hidden md:block">
+  <video
+    src={Stocksense3}
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="w-full h-[690px] object-cover  shadow-lg"
+  />
+</div>
+
       <a href="/dashboard">
     <svg
   xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +89,7 @@ const SignupPage = () => {
           </form>
 
           <p className="text-sm text-center text-yellow-400 mt-6">
-            Already have an account? <Link to="/Login" className="underline hover:text-green-400">Log in</Link>
+            Already have an account? <Link to="/" className="underline hover:text-green-400">Log in</Link>
           </p>
         </div>
       </div>

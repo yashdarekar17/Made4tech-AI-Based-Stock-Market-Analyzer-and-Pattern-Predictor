@@ -12,6 +12,8 @@ import Predictions from './Navbar/Predictions'
 import Portfolio from './Navbar/Portfolio'
 import LoginPage from './login-signup/Login '
 import SignupPage from './login-signup/Signup'
+import Chatbot from './Chatbot'
+import Followingpage from './Followingpage'
 
 
 
@@ -28,6 +30,8 @@ const App = () => {
       <Route path='/Portfolio' element={<Portfolio/>}></Route>
       <Route path='/About' element={<About/>}></Route> 
       <Route path='/Signup' element={<SignupPage/>}></Route>
+      <Route path='/chat' element={<Chatbot/>}></Route>
+      <Route path='/Followingpage' element={<Followingpage/>}></Route>
 
     </Routes>
     </BrowserRouter>

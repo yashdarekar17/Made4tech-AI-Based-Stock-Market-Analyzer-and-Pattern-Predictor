@@ -29,11 +29,11 @@ const SummaryCards = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6 px-6 bg-gray-800">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6 px-6 bg-[#0f172a] mt-0 ">
       {summaryData.map((item, index) => (
         <div
           key={index}
-          className="bg-[#111827] text-white rounded-2xl shadow-md p-5 flex items-center justify-between hover:shadow-lg transition duration-300 border border-gray-700"
+          className="bg-[#111827] text-white rounded-2xl shadow-md p-5 flex items-center justify-between hover:shadow-lg transition duration-300 border border-gray-700 hover:scale-105 cursor-pointer ease-in-out transform"
         >
           <div>
             <h4 className="text-sm text-gray-400">{item.title}</h4>

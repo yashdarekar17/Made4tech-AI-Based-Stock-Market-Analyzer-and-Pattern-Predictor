@@ -128,10 +128,12 @@ const MarketSummary = () => {
       
 
   return (
-    <div className="bg-[#0f172a] p-4 rounded-2xl w-[95vw] mx-auto overflow-x-auto scrollbar-hide">
-      <div className="flex justify-center gap-10 flex-wrap">
+    <div className="bg-[#0f172a] p-4 rounded-2xl w-[95vw] mx-auto overflow-x-auto scrollbar-hide ">
+      <div className="flex justify-center gap-10 flex-wrap ">
   {data.map((item, idx) => (
-    <MarketCard key={idx} item={item} />
+    <MarketCard key={idx} item={item}  />
+   
+    
   ))}
 </div>
 

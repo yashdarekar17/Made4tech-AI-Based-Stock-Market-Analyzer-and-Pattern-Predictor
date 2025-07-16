@@ -2,6 +2,8 @@ import React from "react";
 import Coverpage from './Coverpage.png'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Stocksense3 from './Stocksense3.mp4'
+
 
 const LoginPage = () => {
     const [email,setEmail] =useState('');
@@ -19,13 +21,16 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen w-screen flex bg-[#0f172a] text-white">
       {/* LEFT SIDE - IMAGE */}
-      <div className="w-1/2 hidden md:block">
-        <img
-          src={Coverpage} // ⬅️ Replace with your image path
-          alt="Login Visual"
-          className="object-cover w-full h-full"
-        />
-      </div>
+      <div className="w-full md:w-1/2 hidden md:block">
+  <video
+    src={Stocksense3}
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="w-full h-[690px] object-cover  shadow-lg"
+  />
+</div>
     <a href="/dashboard">
     <svg
   xmlns="http://www.w3.org/2000/svg"

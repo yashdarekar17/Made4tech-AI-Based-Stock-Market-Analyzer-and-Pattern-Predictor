@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+ import React, { useEffect } from "react";
 
 const StockChart = () => {
   useEffect(() => {
@@ -26,8 +26,8 @@ const StockChart = () => {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-[#111827] text-black dark:text-white w-screen overflow-x-hidden px-0 ">
-      <h2 className="text-2xl text-white font-bold tracking-tight mb-6 mt-6 border-b border-gray-700 pb-2 w-[98vw] m-auto">
+    <div className="bg-gray-800 w-screen overflow-x-hidden px-0 ">
+      <h2 className="text-2xl font-bold text-green-400 mb-4 border-b border-green-700 pb-2 mt-6 mb-6 max-w-[97vw] m-auto">
       📈 Market Summary Analysis
       </h2>
 
