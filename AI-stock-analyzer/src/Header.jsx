@@ -44,16 +44,16 @@ const Header = () => {
           />
 
           {showDropdown && (
-            <div className="absolute top-16 right-25 bg-white text-black rounded-md shadow-lg z-50 w-32">
+            <div className="absolute top-16 right-25 bg-gray-800 text-white rounded-md shadow-lg z-50 w-32">
               <button
                 onClick={() => handleNavigation('/')}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                className="block w-full text-left px-4 py-2 "
               >
                 Login
               </button>
               <button
                 onClick={() => handleNavigation('/Followingpage')}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                className="block w-full text-left px-4 py-2"
               >
                 Following
               </button>
@@ -105,7 +105,7 @@ const Header = () => {
             </div>
 
             {showDropdown && (
-              <div className="absolute right-0 bg-white text-black rounded-md shadow-lg z-50 w-32 mt-2">
+              <div className="absolute  bg-white text-black rounded-md shadow-lg z-50 w-32 mt-2">
                 <button
                   onClick={() => handleNavigation('/')}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100"
