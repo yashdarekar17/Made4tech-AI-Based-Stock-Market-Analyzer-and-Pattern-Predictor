@@ -44,7 +44,7 @@ const Header = () => {
           />
 
           {showDropdown && (
-            <div className="absolute top-16 right-0 bg-white text-black rounded-md shadow-lg z-50 w-32">
+            <div className="absolute top-16 right-25 bg-white text-black rounded-md shadow-lg z-50 w-32">
               <button
                 onClick={() => handleNavigation('/')}
                 className="block w-full text-left px-4 py-2 hover:bg-gray-100"
