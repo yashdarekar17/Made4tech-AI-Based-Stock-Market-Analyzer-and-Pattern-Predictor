@@ -20,7 +20,7 @@ const LoginPage = () => {
 
     
   return (
-    <div className="min-h-screen w-screen flex bg-[#0f172a] text-white">
+    <div className="min-h-screen w-screen flex bg-gray-900 text-white">
       {/* LEFT SIDE - IMAGE */}
       <div className="w-full md:w-1/2 hidden md:block">
   <video
@@ -29,7 +29,7 @@ const LoginPage = () => {
     muted
     loop
     playsInline
-    className="w-full h-[690px] object-cover  shadow-lg"
+    className="w-full h-[695px] object-cover  shadow-lg"
   />
 </div>
       <Link to="/dashboard">

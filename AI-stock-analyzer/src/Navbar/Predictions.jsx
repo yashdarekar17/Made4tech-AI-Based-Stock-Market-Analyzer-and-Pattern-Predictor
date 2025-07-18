@@ -14,7 +14,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import Header from "../Header";
+import Header from "../Header2";
 import Footer from "../Footer";
 
 // Ticker Input Form

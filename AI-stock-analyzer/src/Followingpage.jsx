@@ -1,6 +1,6 @@
 import { useSelector,useDispatch } from "react-redux";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
-import Header from "./Header";
+import Header from "./Header2";
 import Footer from "./Footer";
 import { unfollowedStock } from "./Store/Followslice";
 import { toast } from "react-toastify";

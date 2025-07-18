@@ -5,10 +5,13 @@ import ThemeToggle from './ThemeToggle';
 import profileuser from './profileuser.png';
 import { Menu, X } from 'lucide-react';
 
+
 const Header = () => {
-  const navigate = useNavigate();
+  
+  
   const [showDropdown, setShowDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -17,7 +20,8 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-gray-900 text-white shadow-md">
+  <header className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[95vw] text-white shadow-md rounded-xl hover:bg-gray-900 z-50 transition duration-300 mt-6">
+
       <div className=" h-20 px-4 py-3 flex items-center justify-between">
        
         <div className="flex items-center space-x-2">
@@ -36,12 +40,20 @@ const Header = () => {
         {/* Right section (Desktop only) */}
         <div className="hidden md:flex items-center space-x-4 relative">
           {/* Profile Icon */}
-          <img
+        <div className='relative'>
+             <img
             src={profileuser}
             alt="Profile"
             className="w-10 h-10 rounded-full cursor-pointer bg-white"
-            onClick={() => setShowDropdown(!showDropdown)}
+            onClick={() =>{
+              setShowDropdown(!showDropdown);
+               
+            }}
           />
+
+          
+      </div>
+         
 
           {showDropdown && (
             <div className="absolute top-16 right-25 bg-gray-800 text-white rounded-md shadow-lg z-50 w-32">

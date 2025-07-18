@@ -7,7 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import Header from "../Header";
+import Header2 from "../Header2";
 import Footer from "../Footer";
 
 const COLORS = ["#4ade80", "#60a5fa", "#facc15", "#f87171"];
@@ -44,7 +44,7 @@ const Portfolio= () => {
 
   return (
     <>
-      <Header/>
+      <Header2/>
        <div className="bg-gray-800 text-white min-h-screen p-8">
       <h1 className="text-3xl text-yellow-400 font-bold text-center mb-8">📊 Portfolio Analyzer</h1>
 

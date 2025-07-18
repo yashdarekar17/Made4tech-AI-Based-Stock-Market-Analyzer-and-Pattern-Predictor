@@ -26,7 +26,7 @@ const StockChart = () => {
   }, []);
 
   return (
-    <div className="bg-gray-800 w-[99vw] overflow-x-hidden px-0 ">
+    <div className="bg-gray-900 w-[99vw] overflow-x-hidden px-0 ">
       <h2 className="text-2xl font-bold text-green-400 mb-4 border-b border-green-700 pb-2 mt-6 mb-6 max-w-[97vw] m-auto">
       📈 Market Summary Analysis
       </h2>

@@ -8,6 +8,7 @@ import CryptoSummaryWithChart from "./CryptoSummaryWithChart";
 import MarketSummary from './MarketSummary'
 import {Link} from 'react-router-dom'
 import Chatbot from './Chatbot'
+import homepagevideo from './homepage2.mp4'
 
 
 const predictions = [
@@ -38,13 +39,17 @@ const dummyCrypto = {
 const Dashboard = () => {
   return (
     <>
-    <div className='bg-gray-800 '>
+    <div className='bg-gray-900 '>
+      
     <Header/>
+    <video src={homepagevideo} autoPlay loop muted  className=" relative w-full h-[720px] object-cover"/>
+      
+   
     <Chatbot/>
     <SummaryCards/>
     <StockChart/>
     <div>
-        <h1 className="text-2xl font-bold text-green-400 mb-4 border-b border-green-700 pb-2 mt-6 max-w-[97vw] m-auto">📈 Top Predictions Of The Day</h1>
+        <h1 className="text-2xl font-bold text-green-400 mb-4 border-b border-green-700 pb-2 mt-8 mb-8 max-w-[97vw] m-auto">📈 Top Predictions Of The Day</h1>
     </div> 
     <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {predictions.map((p, idx) => (

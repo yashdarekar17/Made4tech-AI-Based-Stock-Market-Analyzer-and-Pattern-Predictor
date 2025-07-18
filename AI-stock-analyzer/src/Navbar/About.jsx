@@ -1,10 +1,10 @@
 import Footer from "../Footer";
-import Header from "../Header";
+import Header from "../Header2";
 
 const AboutAIPage = () => {
   return (
     <>
-      <Header />
+      <Header/>
 
       <div className="bg-gray-800 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
         <h1 className="text-4xl font-bold text-yellow-400 text-center mb-10">

@@ -77,7 +77,7 @@ const TrendPredictionPanel = ({
   id='followbtn'
   onClick={handlefollow}
   className={`w-full h-10 p-0 max-w-md font-semibold rounded-md 
-    ${isFollowed ? "bg-gray-900 text-white" :"bg-yellow-400 text-black hover:bg-yellow-300"} 
+    ${isFollowed ? "bg-gray-800 text-white" :"bg-yellow-400 text-black hover:bg-yellow-300"} 
     hover:opacity-90 transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform `}
 >
   {isFollowed ? 'Following' : 'Follow'}
