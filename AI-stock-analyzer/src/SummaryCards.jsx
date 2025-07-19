@@ -55,7 +55,8 @@ const SummaryCards = () => {
 
   return (
     <div className="overflow-hidden w-full bg-[#0f172a] py-6 px-4 rounded-2xl">
-      <div className="flex gap-6 custom-scroll-animation w-max">
+      <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-max custom-scroll-animation">
+
         {summaryData.map((item, index) => (
           <div
             key={index}

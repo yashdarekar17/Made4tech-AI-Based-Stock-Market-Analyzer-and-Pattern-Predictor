@@ -36,6 +36,7 @@ const TickerTimeSelector = ({ onSubmit }) => {
       onSubmit={handleSubmit}
       className="bg-gray-800 text-white p-6 rounded-xl shadow-lg max-w-2xl mx-auto mt-10 space-y-4"
     >
+      
       <h2 className="text-2xl font-bold text-yellow-400 text-center">
         📈 Analyze Stock Trends
       </h2>
@@ -282,8 +283,11 @@ const Predictions = () => {
           </div>
         )}
 
-<div>
-        <h1 className="text-2xl font-bold text-green-400 mb-4 border-b border-green-700 pb-2 mt-6 max-w-[97vw] m-auto">📈 Predictions </h1>
+    <div className=" mb-4 border-b border-white pb-2 mt-6 max-w-[97vw] m-auto flex">
+        <h1 className="text-2xl font-bold text-white hover:text-green-400">📈 Predictions </h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+  <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
+</svg>
     </div> 
 
 <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -9,6 +9,15 @@
   }
 }
 
+/* Default: no animation */
 .custom-scroll-animation {
-  animation: scroll-right 20s linear infinite;
+  animation: none;
+  transform: none;
+}
+
+/* Enable animation only on screens ≥ 640px */
+@media (min-width: 640px) {
+  .custom-scroll-animation {
+    animation: scroll-right 20s linear infinite;
+  }
 }

@@ -73,15 +73,20 @@ const TrendPredictionPanel = ({
         </div>
       </div>
       <div className='mt-4'>
-        <button
+        <span className='flex gap-5'>
+          <button
   id='followbtn'
   onClick={handlefollow}
-  className={`w-full h-10 p-0 max-w-md font-semibold rounded-md 
+  className={`w-1/2 h-10 p-0 max-w-md font-semibold rounded-md 
     ${isFollowed ? "bg-gray-800 text-white" :"bg-yellow-400 text-black hover:bg-yellow-300"} 
     hover:opacity-90 transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform `}
 >
   {isFollowed ? 'Following' : 'Follow'}
 </button>
+     <button className='w-1/2 h-10 p-0 max-w-md font-semibold rounded-md bg-yellow-400  text-black hover:bg-yellow-300 
+     transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform'>Check stocks</button>
+        </span>
+        
 
       </div>
     </div>
