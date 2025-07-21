@@ -111,83 +111,76 @@ const Predictions = () => {
   const [trendInfo, setTrendInfo] = useState(null);
 
   const predictions = [
-    // High-confidence predictions
-    { stock: "Apple (AAPL)", trend: "Uptrend", confidence: 92.5 },
-    { stock: "Nvidia (NVDA)", trend: "Uptrend", confidence: 93.2 },
-    { stock: "Reliance (RELI)", trend: "Uptrend", confidence: 90.7 },
-    { stock: "Google (GOOGL)", trend: "Uptrend", confidence: 89.1 },
-    { stock: "HDFC Bank (HDFCB)", trend: "Uptrend", confidence: 88.5 },
-    { stock: "Tesla (TSLA)", trend: "Downtrend", confidence: 86.4 },
-    { stock: "Infosys (INFY)", trend: "Downtrend", confidence: 84.3 },
-    { stock: "Meta (META)", trend: "Downtrend", confidence: 81.2 },
-    { stock: "Amazon (AMZN)", trend: "Uptrend", confidence: 78.9 },
-  
-    // Lower-confidence predictions
-    { stock: "Paytm (PAYTM)", trend: "Downtrend", confidence: 72.4 },
-    { stock: "Zomato (ZOM)", trend: "Uptrend", confidence: 69.8 },
-    { stock: "Tata Motors (TATAMOTORS)", trend: "Downtrend", confidence: 75.1 },
-    { stock: "Adani Power (ADANIPOWER)", trend: "Downtrend", confidence: 74.2 },
-    { stock: "ICICI Bank (ICICIB)", trend: "Uptrend", confidence: 73.5 },
-    { stock: "Bajaj Finance (BAJFINANCE)", trend: "Uptrend", confidence: 70.6 },
-    { stock: "JSW Steel (JSWSTEEL)", trend: "Downtrend", confidence: 71.9 },
-    { stock: "Axis Bank (AXISB)", trend: "Uptrend", confidence: 68.7 },
-    {stock: "Coal India (COALINDIA)",trend: "Downtrend", confidence: 66.5},
-  ];
+  { stock: "Apple (AAPL)", trend: "Uptrend", confidence: 92.5 },
+  { stock: "Nvidia (NVDA)", trend: "Uptrend", confidence: 93.2 },
+  { stock: "Google (GOOGL)", trend: "Uptrend", confidence: 89.1 },
+  { stock: "Tesla (TSLA)", trend: "Downtrend", confidence: 86.4 },
+  { stock: "Meta (META)", trend: "Downtrend", confidence: 81.2 },
+  { stock: "Amazon (AMZN)", trend: "Uptrend", confidence: 88.9 },
+  { stock: "Microsoft (MSFT)", trend: "Uptrend", confidence: 90.7 },
+  { stock: "Netflix (NFLX)", trend: "Downtrend", confidence: 84.6 },
+  { stock: "Intel (INTC)", trend: "Uptrend", confidence: 79.8 },
+  { stock: "AMD (AMD)", trend: "Uptrend", confidence: 85.3 },
+  { stock: "PayPal (PYPL)", trend: "Downtrend", confidence: 77.4 },
+  { stock: "Qualcomm (QCOM)", trend: "Uptrend", confidence: 83.1 },
+  { stock: "Boeing (BA)", trend: "Downtrend", confidence: 76.9 },
+  { stock: "Coca-Cola (KO)", trend: "Uptrend", confidence: 74.2 },
+  { stock: "PepsiCo (PEP)", trend: "Uptrend", confidence: 75.5 },
+  { stock: "Walmart (WMT)", trend: "Uptrend", confidence: 80.6 },
+  { stock: "Disney (DIS)", trend: "Downtrend", confidence: 78.3 },
+  { stock: "Uber (UBER)", trend: "Uptrend", confidence: 82.9 }
+];
+
   
 
-  const fetchStockData = async ({ ticker, timeRange }) => {
-    const intervalMap = {
-      "1D": "1min",
-      "1W": "15min",
-      "1M": "1h",
-      "3M": "1day",
-      "1Y": "1day",
-      "ALL": "1day",
-    };
+  const fetchStockData = async ({ ticker }) => {
+  const API_KEY = "f323836bb7854ee8b6062cbfd995a0ac"; // Replace with your actual API key
+  const interval = "1day";
 
-    const interval = intervalMap[timeRange] || "1day";
-    const API_KEY = import.meta.env.VITE_TWELVE_DATA_API_KEY;
+  try {
+    setLoading(true);
+    setTrendInfo(null);
 
-    try {
-      setLoading(true);
-      setTrendInfo(null);
+    const url = `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=${interval}&outputsize=100&apikey=${API_KEY}`;
 
-      const stockRes = await axios.get(
-        `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=${interval}&outputsize=100&apikey=${API_KEY}`
-      );
+    const response = await axios.get(url);
+    const data = response.data;
 
-      const values = stockRes.data?.values;
-      if (!values) throw new Error("Invalid stock data");
+    if (!data.values || data.status === "error") {
+      throw new Error(data.message || "Invalid stock data");
+    }
 
-      const chartData = values.reverse().map((item, index) => {
-        const actual = parseFloat(item.close);
-        const predicted = actual * (1 + 0.01 * Math.sin(index / 5));
+    const chartData = data.values
+      .reverse()
+      .map((entry, i) => {
+        const actual = parseFloat(entry.close);
+        const predicted = actual * (1 + 0.01 * Math.sin(i / 5));
         return {
-          date: item.datetime,
-          actual,
+          date: entry.datetime,
+          actual: parseFloat(actual.toFixed(2)),
           predicted: parseFloat(predicted.toFixed(2)),
         };
       });
 
-      setStockData(chartData);
-      setSelectedTicker(ticker);
+    setStockData(chartData);
+    setSelectedTicker(ticker);
 
-      const metaRes = await axios.get(
-        `https://api.twelvedata.com/symbol_search?symbol=${ticker}&apikey=${API_KEY}`
-      );
-      const companyName = metaRes.data?.data?.[0]?.name || "Unknown Company";
+    const randomConfidence = Math.floor(Math.random() * 20) + 80;
+    const trend = chartData.at(-1).actual > chartData[0].actual ? "Uptrend" : "Downtrend";
+    setTrendInfo({
+      trend,
+      confidence: randomConfidence,
+      companyName: ticker,
+    });
 
-      const randomConfidence = Math.floor(Math.random() * 20) + 80;
-      const trend = chartData[chartData.length - 1].actual > chartData[0].actual ? "Uptrend" : "Downtrend";
+  } catch (err) {
+    console.error("Error fetching stock data:", err);
+    alert("❌ " + err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
-      setTrendInfo({ trend, confidence: randomConfidence, companyName });
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Failed to fetch stock data");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const pieData = [
     { name: "Positive", value: 58 },
@@ -224,7 +217,8 @@ const Predictions = () => {
             <h2 className="text-xl text-center font-semibold mb-4">
               📉 Actual vs Predicted Trend for {selectedTicker}
             </h2>
-            <ResponsiveContainer width="100%" height={300}>
+            <div className="bg-gray-900 p-6 rounded-xl">
+              <ResponsiveContainer width="100%" height={300}>
               <LineChart data={stockData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" hide />
@@ -234,6 +228,8 @@ const Predictions = () => {
                 <Line type="monotone" dataKey="predicted" name="Predicted" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
               </LineChart>
             </ResponsiveContainer>
+            </div>
+            
           </div>
         )}
 

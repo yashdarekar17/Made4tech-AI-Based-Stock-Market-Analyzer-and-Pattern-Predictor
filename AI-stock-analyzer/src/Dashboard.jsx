@@ -18,15 +18,15 @@ import Phoneimg from './Phoneimg.jpg'
 
 const predictions = [
   { stock: "Apple (AAPL)", trend: "Uptrend", confidence: 92.5 },
-  { stock: "Tesla (TSLA)", trend: "Downtrend", confidence: 86.4 },
-  { stock: "Amazon (AMZN)", trend: "Uptrend", confidence: 78.9 },
-  { stock: "Google (GOOGL)", trend: "Uptrend", confidence: 89.1 },
-  { stock: "Meta (META)", trend: "Downtrend", confidence: 81.2 },
-  { stock: "Reliance (RELI)", trend: "Uptrend", confidence: 90.7 },
-  { stock: "Infosys (INFY)", trend: "Downtrend", confidence: 84.3 },
-  { stock: "HDFC Bank (HDFCB)", trend: "Uptrend", confidence: 88.5 },
   { stock: "Nvidia (NVDA)", trend: "Uptrend", confidence: 93.2 },
-];
+  { stock: "Google (GOOGL)", trend: "Uptrend", confidence: 89.1 },
+  { stock: "Tesla (TSLA)", trend: "Downtrend", confidence: 86.4 },
+  { stock: "Meta (META)", trend: "Downtrend", confidence: 81.2 },
+  { stock: "Amazon (AMZN)", trend: "Uptrend", confidence: 88.9 },
+  { stock: "Microsoft (MSFT)", trend: "Uptrend", confidence: 90.7 },
+  { stock: "Netflix (NFLX)", trend: "Downtrend", confidence: 84.6 },
+  { stock: "Intel (INTC)", trend: "Uptrend", confidence: 79.8 },
+]
 const dummyCrypto = {
     name: "Bitcoin",
     symbol: "BTC",
@@ -47,7 +47,7 @@ const Dashboard = () => {
     <div className='bg-gray-900 '>
       
     <Header/>
-  <div className="relative w-full aspect-video">
+  <div className="relative w-full aspect-video max-[650px]:hidden">
   <video
     src={homepagevideo}
     autoPlay
@@ -58,12 +58,13 @@ const Dashboard = () => {
 </div>
 
 
+
       
    
     <Chatbot/>
     <SummaryCards/>
     <StockChart/>
- <div className="relative">
+ <div className="relative max-[650px]:hidden">
   {/* Background Image */}
   <video
   src={Homepage4}

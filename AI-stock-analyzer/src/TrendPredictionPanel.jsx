@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { followStock,unfollowedStock } from './Store/Followslice';
 import { useDispatch,useSelector } from 'react-redux';
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -38,6 +39,14 @@ const TrendPredictionPanel = ({
       }));
     }
   }
+
+  const navigate = useNavigate(); // 👈 ADD THIS
+
+  const symbol = stock.match(/\(([^)]+)\)/)?.[1] || stock; // Extract TSLA from "Tesla (TSLA)"
+
+  const handleCheckStock = () => {
+    navigate(`/chart/${symbol}`);
+  };
 
   return (
     <div className="bg-[#111827] text-white p-6 rounded-2xl shadow-md mt-6 w-full max-w-md mx-auto border border-gray-700 ">
@@ -83,8 +92,11 @@ const TrendPredictionPanel = ({
 >
   {isFollowed ? 'Following' : 'Follow'}
 </button>
-     <button className='w-1/2 h-10 p-0 max-w-md font-semibold rounded-md bg-yellow-400  text-black hover:bg-yellow-300 
-     transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform'>Check stocks</button>
+     <button
+            onClick={handleCheckStock}
+            className="w-1/2 h-10 p-0 max-w-md font-semibold rounded-md bg-yellow-400 text-black hover:bg-yellow-300 transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform">
+            Check stocks
+          </button>
         </span>
         
 

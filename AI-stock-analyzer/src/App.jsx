@@ -14,6 +14,7 @@ import LoginPage from './login-signup/Login '
 import SignupPage from './login-signup/Signup'
 import Chatbot from './Chatbot'
 import Followingpage from './Followingpage'
+import CheckstocksChart from './CheckStockChart'
 
 
 
@@ -32,6 +33,8 @@ const App = () => {
       <Route path='/Signup' element={<SignupPage/>}></Route>
       <Route path='/chat' element={<Chatbot/>}></Route>
       <Route path='/Followingpage' element={<Followingpage/>}></Route>
+     <Route path="/chart/:symbol" element={<CheckstocksChart />} />
+
 
     </Routes>
     </BrowserRouter>
