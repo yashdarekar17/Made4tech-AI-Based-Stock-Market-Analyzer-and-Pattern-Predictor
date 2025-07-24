@@ -46,7 +46,7 @@ const Portfolio= () => {
     <>
       <Header2/>
        <div className="bg-gray-800 text-white min-h-screen p-8">
-      <h1 className="text-3xl text-yellow-400 font-bold text-center mb-8">📊 Portfolio Analyzer</h1>
+      <h1 className="text-3xl text-yellow-400 font-bold text-center mb-8"> Portfolio Analyzer</h1>
 
       {/* Portfolio Table */}
       <div className="overflow-x-auto bg-gray-900 p-6 rounded-xl shadow-md">
@@ -77,7 +77,7 @@ const Portfolio= () => {
       {/* Risk Profile + Investment Pie */}
       <div className="mt-10 flex flex-col md:flex-row gap-8 items-start">
         <div className="bg-gray-900 p-6 rounded-xl shadow-md w-full md:w-1/2">
-          <h2 className="text-xl font-semibold text-yellow-300 mb-4">🧠 Risk Profile Analysis</h2>
+          <h2 className="text-xl font-semibold text-yellow-300 mb-4"> Risk Profile Analysis</h2>
           <p className="mb-2">Risk Score: <span className="text-yellow-400 font-bold">{riskScore}/100</span></p>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
@@ -102,7 +102,7 @@ const Portfolio= () => {
 
         {/* AI Suggestions */}
         <div className="bg-gray-900 p-6 rounded-xl shadow-md w-full md:w-1/2">
-          <h2 className="text-xl font-semibold text-yellow-300 mb-4">🤖 AI Suggestions</h2>
+          <h2 className="text-xl font-semibold text-yellow-300 mb-4"> AI Suggestions</h2>
           <ul className="list-disc pl-6 space-y-2 text-gray-300">
             <li>Reduce TSLA holdings to limit volatility</li>
             <li>Increase bond allocation to reduce risk</li>
@@ -113,7 +113,7 @@ const Portfolio= () => {
 
       {/* Rebalancing Visualization */}
       <div className="mt-10 bg-gray-900 p-6 rounded-xl shadow-md">
-        <h2 className="text-xl font-semibold text-yellow-300 mb-4">🔁 Portfolio Rebalancing</h2>
+        <h2 className="text-xl font-semibold text-yellow-300 mb-4"> Portfolio Rebalancing</h2>
         <div className="flex flex-col md:flex-row gap-6">
           <div className="w-full md:w-1/2 text-center">
             <h3 className="mb-2">Before</h3>

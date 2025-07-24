@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const TrendPredictionPanel = ({
 
   stock = "Tesla (TSLA)",
-  trend = "Uptrend",
+   changePercent = "-0.64%",
   confidence = 87.3,
 
   
@@ -18,7 +18,7 @@ const TrendPredictionPanel = ({
   const dispatch = useDispatch();
   const followedStocks = useSelector(state => state.follow?.followedstocks ?? []);
   const isFollowed = followedStocks.some(s => s.stock === stock);
-  const isUptrend = trend.toLowerCase() === "uptrend";
+ 
 
   const handlefollow = ()=>{
     const stockdata = { stock , trend ,confidence}
@@ -49,10 +49,10 @@ const TrendPredictionPanel = ({
   };
 
   return (
-    <div className="bg-[#111827] text-white p-6 rounded-2xl shadow-md mt-6 w-full max-w-md mx-auto border border-gray-700 ">
+    <div className=" bg-gray-800 backdrop-blur text-white p-6 rounded-2xl shadow-md mt-6 w-full max-w-md mx-auto border border-gray-700 ">
 
       <h3 className="text-lg font-semibold mb-4 text-center text-green-400">
-        📊 AI Trend Prediction
+         
       </h3>
 
       {/* Stock Name */}
@@ -64,13 +64,11 @@ const TrendPredictionPanel = ({
       <div className="flex items-center justify-between">
         {/* Trend Status */}
         <div className="flex items-center space-x-3">
-          <div className={`text-3xl ${isUptrend ? "text-green-400" : "text-red-500"}`}>
-            {isUptrend ? <ArrowUpRight size={32} /> : <ArrowDownRight size={32} />}
-          </div>
+          
           <div>
-            <p className="text-sm text-gray-400">Trend Direction</p>
-            <p className={`text-xl font-bold ${isUptrend ? "text-green-400" : "text-red-500"}`}>
-              {trend}
+            <p className="text-sm text-gray-400">Change (24h)</p>
+            <p className={`text-xl font-bold ${changePercent.startsWith('-') ? 'text-red-400':'text-green-400'}`}>
+              { changePercent }
             </p>
           </div>
         </div>
@@ -87,14 +85,14 @@ const TrendPredictionPanel = ({
   id='followbtn'
   onClick={handlefollow}
   className={`w-1/2 h-10 p-0 max-w-md font-semibold rounded-md 
-    ${isFollowed ? "bg-gray-800 text-white" :"bg-yellow-400 text-black hover:bg-yellow-300"} 
+    ${isFollowed ? "bg-gray-800 text-white" :"bg-white hover:bg-gray-300 text-black "} 
     hover:opacity-90 transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform `}
 >
   {isFollowed ? 'Following' : 'Follow'}
 </button>
      <button
             onClick={handleCheckStock}
-            className="w-1/2 h-10 p-0 max-w-md font-semibold rounded-md bg-yellow-400 text-black hover:bg-yellow-300 transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform">
+            className="w-1/2 h-10 p-0 max-w-md font-semibold rounded-md bg-white text-black hover:bg-gray-300 transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform">
             Check stocks
           </button>
         </span>

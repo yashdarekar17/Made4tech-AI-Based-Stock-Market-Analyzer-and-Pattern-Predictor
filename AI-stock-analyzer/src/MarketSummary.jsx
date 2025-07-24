@@ -1,5 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import { useNavigate } from "react-router-dom";
 import {
   Chart as ChartJS,
   LineElement,
@@ -79,52 +80,58 @@ const MarketCard = ({ item }) => {
 
 const MarketSummary = () => {
     const data = [
-        {
-          name: "Bitcoin",
-          symbol: "BTC",
-          price: 64890.25,
-          change: 2.34,
-          logo: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
-          color: "#22C55E",
-          sparkline: [64000, 64200, 64500, 64800, 65000, 64890, 64600, 64250, 64000],
-        },
-        {
-            name: "SPDR S&P 500",
-            symbol: "SPY",
-            price: 625.82,
-            change: 0.28,
-            logo: "https://cdn-icons-png.flaticon.com/512/6840/6840478.png", // Chart/stocks icon
-            color: "#22C55E",
-            sparkline: [620, 622, 624, 625.8, 626, 624, 623, 625.2, 625.82],
-        },
-        {
-          name: "Vanguard Total",
-          symbol: "VTI",
-          price: 308.32,
-          change: 0.27,
-          logo: "https://cdn-icons-png.flaticon.com/512/1170/1170576.png",
-          color: "#22C55E",
-          sparkline: [306, 307, 307.5, 308.32, 309, 308.5],
-        },
-        {
-          name: "Invesco QQQ",
-          symbol: "QQQ",
-          price: 555.45,
-          change: -0.14,
-          logo: "https://cdn-icons-png.flaticon.com/512/3602/3602123.png",
-          color: "#EF4444",
-          sparkline: [560, 558, 556, 555.45, 554.5, 555.2],
-        },
-        {
-          name: "Gold Trust",
-          symbol: "GLD",
-          price: 306.2,
-          change: 0.22,
-          logo: "https://cdn-icons-png.flaticon.com/512/2086/2086735.png",
-          color: "#FACC15",
-          sparkline: [304, 305, 306, 306.2, 306.1],
-        },
-      ];
+  {
+    name: "Bitcoin",
+    symbol: "BTC",
+    price: 64890.25,
+    change: 2.34,
+    logo: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
+    color: "#22C55E",
+    sparkline: [64000, 64200, 64500, 64800, 65000, 64890, 64600, 64250, 64000],
+  },
+  {
+    name: "Ethereum",
+    symbol: "ETH",
+    price: 3430.82,
+    change: 1.12,
+    logo: "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
+    color: "#22C55E",
+    sparkline: [3400, 3410, 3425, 3430.82, 3440, 3435, 3420, 3415],
+  },
+  {
+    name: "Solana",
+    symbol: "SOL",
+    price: 168.5,
+    change: -0.45,
+    logo: "https://assets.coingecko.com/coins/images/4128/small/solana.png",
+    color: "#EF4444",
+    sparkline: [170, 169.5, 168.5, 167, 168, 168.5],
+  },
+  {
+    name: "Cardano",
+    symbol: "ADA",
+    price: 0.421,
+    change: 0.37,
+    logo: "https://assets.coingecko.com/coins/images/975/small/cardano.png",
+    color: "#22C55E",
+    sparkline: [0.41, 0.415, 0.418, 0.421, 0.42, 0.419],
+  },
+  {
+    name: "Dogecoin",
+    symbol: "DOGE",
+    price: 0.125,
+    change: -0.23,
+    logo: "https://assets.coingecko.com/coins/images/5/small/dogecoin.png",
+    color: "#EF4444",
+    sparkline: [0.12, 0.124, 0.126, 0.125, 0.124, 0.123],
+  },
+];
+
+      const navigate = useNavigate(); 
+
+      
+   
+  
       
 
   return (
@@ -133,6 +140,7 @@ const MarketSummary = () => {
     {data.map((item, idx) => (
       <div
         key={idx}
+        onClick={()=> navigate(`/chart/${item.symbol}`)}
         className="hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out cursor-pointer"
       >
         <MarketCard item={item} />

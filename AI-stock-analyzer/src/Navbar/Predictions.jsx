@@ -38,7 +38,7 @@ const TickerTimeSelector = ({ onSubmit }) => {
     >
       
       <h2 className="text-2xl font-bold text-yellow-400 text-center">
-        📈 Analyze Stock Trends
+         Analyze Stock Trends
       </h2>
 
       <div className="flex flex-col md:flex-row gap-4">
@@ -67,7 +67,7 @@ const TickerTimeSelector = ({ onSubmit }) => {
         type="submit"
         className="w-full bg-yellow-400 text-black font-semibold py-2 rounded-md hover:bg-yellow-500 transition"
       >
-        🔍 Analyze
+         Analyze
       </button>
     </form>
   );
@@ -77,9 +77,9 @@ const TickerTimeSelector = ({ onSubmit }) => {
 const TrendCard = ({ ticker, trend, confidence, companyName }) => {
   const isUp = trend === "Uptrend";
   return (
-    <div className="bg-[#0f172a] text-white p-6 rounded-2xl shadow-md max-w-md mx-auto mt-8">
+    <div className="bg-gray-800 text-white p-6 rounded-2xl shadow-md max-w-md mx-auto mt-8">
       <div className="text-yellow-400 font-semibold text-center mb-4">
-        📊 AI Trend Prediction
+         AI Trend Prediction
       </div>
       <div className="text-center">
         <p className="text-gray-400">Stock</p>
@@ -110,26 +110,27 @@ const Predictions = () => {
   const [selectedTicker, setSelectedTicker] = useState("");
   const [trendInfo, setTrendInfo] = useState(null);
 
-  const predictions = [
-  { stock: "Apple (AAPL)", trend: "Uptrend", confidence: 92.5 },
-  { stock: "Nvidia (NVDA)", trend: "Uptrend", confidence: 93.2 },
-  { stock: "Google (GOOGL)", trend: "Uptrend", confidence: 89.1 },
-  { stock: "Tesla (TSLA)", trend: "Downtrend", confidence: 86.4 },
-  { stock: "Meta (META)", trend: "Downtrend", confidence: 81.2 },
-  { stock: "Amazon (AMZN)", trend: "Uptrend", confidence: 88.9 },
-  { stock: "Microsoft (MSFT)", trend: "Uptrend", confidence: 90.7 },
-  { stock: "Netflix (NFLX)", trend: "Downtrend", confidence: 84.6 },
-  { stock: "Intel (INTC)", trend: "Uptrend", confidence: 79.8 },
-  { stock: "AMD (AMD)", trend: "Uptrend", confidence: 85.3 },
-  { stock: "PayPal (PYPL)", trend: "Downtrend", confidence: 77.4 },
-  { stock: "Qualcomm (QCOM)", trend: "Uptrend", confidence: 83.1 },
-  { stock: "Boeing (BA)", trend: "Downtrend", confidence: 76.9 },
-  { stock: "Coca-Cola (KO)", trend: "Uptrend", confidence: 74.2 },
-  { stock: "PepsiCo (PEP)", trend: "Uptrend", confidence: 75.5 },
-  { stock: "Walmart (WMT)", trend: "Uptrend", confidence: 80.6 },
-  { stock: "Disney (DIS)", trend: "Downtrend", confidence: 78.3 },
-  { stock: "Uber (UBER)", trend: "Uptrend", confidence: 82.9 }
+ const predictions = [
+  { stock: "Apple (AAPL)", changePercent: "+3.06%", confidence: 92.5 },
+  { stock: "Nvidia (NVDA)", changePercent: "+2.34%", confidence: 93.2 },
+  { stock: "Google (GOOGL)", changePercent: "+1.92%", confidence: 89.1 },
+  { stock: "Tesla (TSLA)", changePercent: "-2.14%", confidence: 86.4 },
+  { stock: "Meta (META)", changePercent: "-1.68%", confidence: 81.2 },
+  { stock: "Amazon (AMZN)", changePercent: "+2.98%", confidence: 88.9 },
+  { stock: "Microsoft (MSFT)", changePercent: "+1.76%", confidence: 90.7 },
+  { stock: "Netflix (NFLX)", changePercent: "-2.67%", confidence: 84.6 },
+  { stock: "Intel (INTC)", changePercent: "+0.89%", confidence: 79.8 },
+  { stock: "AMD (AMD)", changePercent: "+1.54%", confidence: 85.3 },
+  { stock: "PayPal (PYPL)", changePercent: "-1.23%", confidence: 77.4 },
+  { stock: "Qualcomm (QCOM)", changePercent: "+2.12%", confidence: 83.1 },
+  { stock: "Boeing (BA)", changePercent: "-0.86%", confidence: 76.9 },
+  { stock: "Coca-Cola (KO)", changePercent: "+0.45%", confidence: 74.2 },
+  { stock: "PepsiCo (PEP)", changePercent: "+0.72%", confidence: 75.5 },
+  { stock: "Walmart (WMT)", changePercent: "+1.11%", confidence: 80.6 },
+  { stock: "Disney (DIS)", changePercent: "-0.94%", confidence: 78.3 },
+  { stock: "Uber (UBER)", changePercent: "+2.76%", confidence: 82.9 },
 ];
+
 
   
 
@@ -175,7 +176,7 @@ const Predictions = () => {
 
   } catch (err) {
     console.error("Error fetching stock data:", err);
-    alert("❌ " + err.message);
+    alert("Error fetching stock data: " + err.message);
   } finally {
     setLoading(false);
   }
@@ -198,7 +199,7 @@ const Predictions = () => {
   return (
     <>
       <Header />
-      <div className="bg-gray-800  p-6 text-white">
+      <div className="bg-gray-900  p-6 text-white">
         <TickerTimeSelector onSubmit={fetchStockData} />
 
         {loading && <p className="text-center mt-6">⏳ Loading...</p>}
@@ -215,7 +216,7 @@ const Predictions = () => {
         {stockData.length > 0 && (
           <div className="mt-10 w-[95vw] mx-auto">
             <h2 className="text-xl text-center font-semibold mb-4">
-              📉 Actual vs Predicted Trend for {selectedTicker}
+               Actual vs Predicted Trend for {selectedTicker}
             </h2>
             <div className="bg-gray-900 p-6 rounded-xl">
               <ResponsiveContainer width="100%" height={300}>
@@ -235,7 +236,7 @@ const Predictions = () => {
 
         {stockData.length > 0 && (
           <div className="bg-gray-800 mt-10 p-6 rounded-xl max-w-3xl mx-auto text-white">
-            <h2 className="text-xl font-bold mb-2">📌 Key Pattern Detected</h2>
+            <h2 className="text-xl font-bold mb-2"> Key Pattern Detected</h2>
             <p className="text-yellow-400 font-semibold">Double Bottom</p>
             <p className="text-sm mt-2 text-gray-300">
               A bullish reversal pattern typically seen after a prolonged downtrend.
@@ -248,7 +249,7 @@ const Predictions = () => {
 
         {stockData.length > 0 && (
           <div className="bg-gray-800 mt-10 p-6 rounded-xl max-w-4xl mx-auto text-white">
-            <h2 className="text-xl font-bold mb-4">🧐 Sentiment Analysis</h2>
+            <h2 className="text-xl font-bold mb-4"> Sentiment Analysis</h2>
             <div className="flex flex-col md:flex-row gap-6">
               <div className="w-full md:w-1/2 bg-gray-700 p-4 rounded-md text-center">
                 <h3 className="font-semibold mb-2 text-yellow-300">Sentiment Breakdown</h3>
@@ -280,7 +281,7 @@ const Predictions = () => {
         )}
 
     <div className=" mb-4 border-b border-white pb-2 mt-6 max-w-[97vw] m-auto flex">
-        <h1 className="text-2xl font-bold text-white hover:text-green-400">📈 Predictions </h1>
+        <h1 className="text-2xl font-bold text-white hover:text-green-400"> Predictions </h1>
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
   <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
 </svg>
@@ -291,7 +292,7 @@ const Predictions = () => {
         <TrendPredictionPanel
           key={idx}
           stock={p.stock}
-          trend={p.trend}
+          changePercent={p.changePercent}
           confidence={p.confidence}
         />
       ))}
