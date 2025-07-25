@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Stocksense3 from './Stocksense3.mp4';
+import { X } from "lucide-react";
+import stocklogo from "../stocklogo.png";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ const SignupPage = () => {
         password: formData.password
       });
       alert("Signup successful");
-      navigate("/dashboard"); // redirect after signup
+      navigate("/dashboard");
     } catch (err) {
       alert("Signup failed");
       console.error(err);
@@ -39,50 +40,92 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen flex bg-[#0f172a] text-white">
-      <div className="w-full md:w-1/2 hidden md:block">
-        <video src={Stocksense3} autoPlay muted loop playsInline className="w-full h-[690px] object-cover shadow-lg" />
-      </div>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-4 relative">
 
-      <Link to="/dashboard">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-white cursor-pointer absolute top-4 right-4 hover:text-green-400 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-      </Link>
-
-      <div className="w-full md:w-1/2 flex items-center justify-center p-6">
-        <div className="w-full max-w-md bg-[#1e293b] p-8 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-bold text-green-400 mb-6 text-center">Create Your Account</h2>
-          <form onSubmit={handleSubmit}>
-            <label className="block mb-3">
-              <span className="text-gray-300">Full Name</span>
-              <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required placeholder="Enter your name" className="mt-1 w-full px-4 py-2 bg-[#0f172a] text-white border border-gray-600 rounded-md" />
-            </label>
-
-            <label className="block mb-3">
-              <span className="text-gray-300">Email</span>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="you@example.com" className="mt-1 w-full px-4 py-2 bg-[#0f172a] text-white border border-gray-600 rounded-md" />
-            </label>
-
-            <label className="block mb-3">
-              <span className="text-gray-300">Password</span>
-              <input type="password" name="password" value={formData.password} onChange={handleChange} required placeholder="••••••••" className="mt-1 w-full px-4 py-2 bg-[#0f172a] text-white border border-gray-600 rounded-md" />
-            </label>
-
-            <label className="block mb-4">
-              <span className="text-gray-300">Confirm Password</span>
-              <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required placeholder="••••••••" className="mt-1 w-full px-4 py-2 bg-[#0f172a] text-white border border-gray-600 rounded-md" />
-            </label>
-
-            <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-md transition">Sign Up</button>
-          </form>
-
-          <p className="text-sm text-center text-yellow-400 mt-6">
-            Already have an account? <Link to="/" className="underline hover:text-green-400">Log in</Link>
-          </p>
+      {/* Header with logo and close button */}
+      <div className="absolute top-6 left-0 w-full px-6 flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <img src={stocklogo} alt="Logo" className="w-8 h-8" />
+          <div className="text-green-400 font-bold text-xl tracking-wide">StocksenseAI</div>
         </div>
+
+        <Link to="/dashboard">
+          <X size={28} color="white" className="hover:opacity-70" />
+        </Link>
       </div>
+
+      {/* Title */}
+      <h1 className="text-3xl font-semibold mb-10 mt-24 text-center">Create Your Account</h1>
+
+      {/* Signup Form */}
+      <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
+        <div>
+          <label className="block text-sm text-gray-400 mb-2">Full Name</label>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Your Name"
+            className="w-full px-5 py-3 bg-gray-800 border border-white rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white"
+            value={formData.fullName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm text-gray-400 mb-2">Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            className="w-full px-5 py-3 bg-gray-800 border border-white rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm text-gray-400 mb-2">Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            className="w-full px-5 py-3 bg-gray-800 border border-white rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm text-gray-400 mb-2">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="••••••••"
+            className="w-full px-5 py-3 bg-gray-800 border border-white rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-3 bg-white text-black font-semibold rounded-md hover:bg-transparent hover:text-white hover:border hover:border-white transition duration-300"
+        >
+          Sign Up
+        </button>
+      </form>
+
+      {/* Login Link */}
+      <p className="text-sm text-center text-gray-400 mt-6">
+        Already have an account?{" "}
+        <Link to="/" className="underline hover:text-white">
+          Log in
+        </Link>
+      </p>
     </div>
   );
 };

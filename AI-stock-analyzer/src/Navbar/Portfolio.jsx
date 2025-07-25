@@ -1,165 +1,248 @@
 import React, { useState } from "react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
 import Header2 from "../Header2";
 import Footer from "../Footer";
 
-const COLORS = ["#4ade80", "#60a5fa", "#facc15", "#f87171"];
-
-const samplePortfolio = [
-  { ticker: "AAPL", quantity: 10, buyPrice: 145, currentPrice: 190, type: "Stock" },
-  { ticker: "GOOGL", quantity: 5, buyPrice: 1200, currentPrice: 1350, type: "Stock" },
-  { ticker: "TSLA", quantity: 8, buyPrice: 650, currentPrice: 610, type: "Stock" },
-  { ticker: "BND", quantity: 20, buyPrice: 85, currentPrice: 88, type: "Bond" },
+const tradingMetrics = [
+  { label: "Account Balance", value: "99,887.39" },
+  { label: "Equity", value: "99,887.39" },
+  { label: "Realized P&L", value: "-112.61", negative: true },
+  { label: "Unrealized P&L", value: "0.00" },
+  { label: "Account Margin", value: "0.00" },
+  { label: "Available Funds", value: "99,887.39" },
+  { label: "Orders Margin", value: "0.00" },
 ];
 
-const Portfolio= () => {
-  const [portfolio, setPortfolio] = useState(samplePortfolio);
+const subTabs = ["All", "Working", "Inactive", "Filled", "Cancelled", "Rejected"];
 
-  const gainLoss = (item) => ((item.currentPrice - item.buyPrice) * item.quantity).toFixed(2);
-
-  const riskScore = 68; // simulated score
-
-  const investmentTypeData = [
-    { name: "Stocks", value: 85 },
-    { name: "Bonds", value: 15 },
-  ];
-
-  const rebalanceBefore = [
-    { name: "Stocks", value: 85 },
-    { name: "Bonds", value: 15 },
-  ];
-
-  const rebalanceAfter = [
-    { name: "Stocks", value: 60 },
-    { name: "Bonds", value: 30 },
-    { name: "Gold", value: 10 },
-  ];
+const Portfolio = () => {
+  const [Active, setActive] = useState("Orders");
 
   return (
     <>
-      <Header2/>
-       <div className="bg-gray-800 text-white min-h-screen p-8">
-      <h1 className="text-3xl text-yellow-400 font-bold text-center mb-8"> Portfolio Analyzer</h1>
+      <Header2 />
+      <div className="bg-gray-900 text-white min-h-screen p-6">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-4 bg-gray-900 p-4 rounded-lg">
+  {/* Left section: Title + Icon */}
+  <div className="flex items-center gap-1">
+    <h2 className="text-2xl font-bold text-white">Trading Analysis</h2>
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+      <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
+    </svg>
+  </div>
 
-      {/* Portfolio Table */}
-      <div className="overflow-x-auto bg-gray-900 p-6 rounded-xl shadow-md">
-        <table className="w-full table-auto text-left">
-          <thead className="text-yellow-400">
-            <tr>
-              <th>Ticker</th>
-              <th>Qty</th>
-              <th>Buy Price</th>
-              <th>Current Price</th>
-              <th>Gain/Loss</th>
-            </tr>
-          </thead>
-          <tbody>
-            {portfolio.map((item) => (
-              <tr key={item.ticker} className="border-b border-gray-900">
-                <td>{item.ticker}</td>
-                <td>{item.quantity}</td>
-                <td>${item.buyPrice}</td>
-                <td>${item.currentPrice}</td>
-                <td className={gainLoss(item) >= 0 ? "text-green-400" : "text-red-400"}>${gainLoss(item)}</td>
-              </tr>
+  {/* Right section: Login button */}
+  <button className="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-yellow-400 transition duration-300">
+    Login
+  </button>
+</div>
+
+        <div className="max-w-[97vw] border-b border-white mt-5"></div>
+
+        {/* Metrics */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-6 mt-6 text-sm">
+          {tradingMetrics.map((item, index) => (
+            <div key={index} className="bg-gray-800 p-3 rounded-lg">
+              <p className="text-gray-400">{item.label}</p>
+              <p className={`${item.negative ? "text-red-400" : "text-green-400"} font-semibold`}>
+                {item.value}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Main Tabs */}
+        <div className="flex space-x-4 border-b border-gray-700 pb-2 mb-4 text-sm">
+          {["Orders", "Positions", "History", "Account History", "Trading Journal"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActive(tab)}
+              className={`text-gray-400 hover:text-white ${
+                Active === tab ? "border-b-2 text-white border-white" : ""
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Sub Tabs */}
+        {Active === "Orders" && (
+          <div className="flex space-x-4 border-b border-gray-700 pb-2 mb-4 text-sm">
+            {subTabs.map((tab, i) => (
+              <button key={i} className={`text-gray-300 hover:text-yellow-400`}>
+                {tab}
+              </button>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Risk Profile + Investment Pie */}
-      <div className="mt-10 flex flex-col md:flex-row gap-8 items-start">
-        <div className="bg-gray-900 p-6 rounded-xl shadow-md w-full md:w-1/2">
-          <h2 className="text-xl font-semibold text-yellow-300 mb-4"> Risk Profile Analysis</h2>
-          <p className="mb-2">Risk Score: <span className="text-yellow-400 font-bold">{riskScore}/100</span></p>
-          <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
-              <Pie
-                data={investmentTypeData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={70}
-                label
-              >
-                {investmentTypeData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* AI Suggestions */}
-        <div className="bg-gray-900 p-6 rounded-xl shadow-md w-full md:w-1/2">
-          <h2 className="text-xl font-semibold text-yellow-300 mb-4"> AI Suggestions</h2>
-          <ul className="list-disc pl-6 space-y-2 text-gray-300">
-            <li>Reduce TSLA holdings to limit volatility</li>
-            <li>Increase bond allocation to reduce risk</li>
-            <li>Consider adding Gold ETF for diversification</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Rebalancing Visualization */}
-      <div className="mt-10 bg-gray-900 p-6 rounded-xl shadow-md">
-        <h2 className="text-xl font-semibold text-yellow-300 mb-4"> Portfolio Rebalancing</h2>
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="w-full md:w-1/2 text-center">
-            <h3 className="mb-2">Before</h3>
-            <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
-                <Pie
-                  data={rebalanceBefore}
-                  dataKey="value"
-                  nameKey="name"
-                  outerRadius={70}
-                  label
-                >
-                  {rebalanceBefore.map((entry, index) => (
-                    <Cell key={`bcell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
           </div>
+        )}
 
-          <div className="w-full md:w-1/2 text-center">
-            <h3 className="mb-2">After</h3>
-            <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
-                <Pie
-                  data={rebalanceAfter}
-                  dataKey="value"
-                  nameKey="name"
-                  outerRadius={70}
-                  label
-                >
-                  {rebalanceAfter.map((entry, index) => (
-                    <Cell key={`acell-${index}`} fill={COLORS[index % COLORS.length]} />
+        {/* Dynamic Tab Content */}
+        {Active === "Orders" && (
+          <div className="overflow-x-auto text-sm">
+            <table className="w-full table-auto border-collapse text-left">
+              <thead className="bg-gray-800">
+                <tr>
+                  {[
+                    "Symbol",
+                    "Side",
+                    "Type",
+                    "Qty",
+                    "Limit Price",
+                    "Stop Price",
+                    "Fill Price",
+                    "Take Profit",
+                    "Stop Loss",
+                    "Instruction",
+                    "Status",
+                    "Placing Time",
+                    "Order ID",
+                    "Expiry",
+                    "Leverage",
+                  ].map((heading, index) => (
+                    <th key={index} className="px-3 py-2 border-b border-gray-700">
+                      {heading}
+                    </th>
                   ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colSpan={15} className="text-center py-6 text-gray-500">
+                    There is no trading data here yet
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
+        )}
+
+        {/* Placeholder Content for Other Tabs */}
+        {Active === "Positions" && (
+          <>
+          <div className=" overflow-x-auto text-sm">
+            <table className="w-full table-auto border-collapse text-left">
+              <thead className="bg-gray-800">
+                <tr>
+                  {
+                    [
+                    "Symbol",
+                    "Side",
+                    "Type",
+                    "Qty",
+                    "Limit Price",
+                    "Stop Price",
+                    "Fill Price",
+                    "Take Profit",
+                    "Stop Loss",
+                    "Instruction",
+                    "Status",
+                    "Placing Time",
+                    "Order ID",
+                    "Expiry",
+                    "Leverage",
+                  ].map((heading,index)=>{
+                    return(
+                      <th key={index} className="px-3 py-2 border-b border-gray-700">
+                        {heading}
+                      </th>
+                    )
+                  })
+                  }
+                </tr>
+
+              </thead>
+            </table>
+
+          </div>
+          <div className="text-center text-gray-400 py-10">No open positions available.</div>
+          </>
+        )}
+        {Active === "History" && (
+          <>
+          <div className="overflow-x-auto text-sm">
+            <table className="w-full table-auto border-collapse">
+              <thead className="bg-gray-800">
+                <tr>
+                  {["Symbol",
+                    "Side",
+                    "Qty",
+                    "Limit price",
+                    "Stop price",
+                    "Fill price",
+                    "Status",
+                    "Leverage",
+                    "Margin",
+                    "Placing Time",
+                    "Closing Time"
+                  ].map((heading,index)=>{
+                    return(
+                      <th key={index} className="px-3 py-2 border-b border-gray-700">
+                        {heading}
+                      </th>
+                    )
+                  })}
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div className="text-center text-gray-400 py-10">No historical data found.</div>
+          </>
+          
+        )}
+        {Active === "Account History" && (
+          <>
+          <div className="overflow-x-auto text-sm">
+            <table className="w-full table-auto border-collapse">
+              <thead className="bg-gray-800">
+                <tr>
+                  {["Time",
+                    "Balance Before",
+                    "Balance After",
+                    "Realized P&L",
+                    "Action",
+                    
+                  ].map((heading,index)=>{
+                    return(
+                      <th key={index} className="px-3 py-2 border-b border-gray-700">
+                        {heading}
+                      </th>
+                    )
+                  })}
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div className="text-center text-gray-400 py-10">No account activity recorded.</div>
+          </>
+          
+        )}
+        {Active === "Trading Journal" && (
+          <>
+          <div className="overflow-x-auto text-sm">
+            <table className="w-full table-auto border-collapse">
+              <thead className="bg-gray-800">
+                <tr>
+                  {["Time",
+                    "Text",
+                  ].map((heading,index)=>{
+                    return(
+                      <th key={index} className="px-3 py-2 border-b border-gray-700">
+                        {heading}
+                      </th>
+                    )
+                  })}
+                </tr>
+              </thead>
+            </table>
+          </div>
+           <div className="text-center text-gray-400 py-10">No journal entries yet.</div>
+          </>
+         
+        )}
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
-    
   );
 };
 

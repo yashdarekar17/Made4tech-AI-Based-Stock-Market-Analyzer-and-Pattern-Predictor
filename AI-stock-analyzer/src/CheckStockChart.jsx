@@ -26,13 +26,13 @@ const CheckStocksChart = () => {
   UBER:  { name: "Uber Technologies, Inc.", slug: "uber", price: 71.13, change: "+1.58", changePercent: "+2.27%" },
 
   // Crypto
-  BTC: { name: "Bitcoin", slug: "bitcoin", price: 64890.25, change: "+456.23", changePercent: "+0.71%" },
-  ETH: { name: "Ethereum", slug: "ethereum", price: 3467.82, change: "-23.41", changePercent: "-0.67%" },
-  SOL: { name: "Solana", slug: "solana", price: 145.78, change: "+2.15", changePercent: "+1.50%" },
-  BNB: { name: "Binance Coin", slug: "binancecoin", price: 587.63, change: "+6.22", changePercent: "+1.07%" },
-  XRP: { name: "XRP", slug: "ripple", price: 0.637, change: "-0.008", changePercent: "-1.24%" },
-  DOGE: { name: "Dogecoin", slug: "dogecoin", price: 0.153, change: "+0.004", changePercent: "+2.63%" },
-  ADA: { name: "Cardano", slug: "cardano", price: 0.418, change: "+0.006", changePercent: "+1.46%" }
+  BTC: { name: "Bitcoin", slug: "crypto/XTVCBTC", price: 64890.25, change: "+456.23", changePercent: "+0.71%" },
+  ETH: { name: "Ethereum", slug: "crypto/XTVCETH", price: 3467.82, change: "-23.41", changePercent: "-0.67%" },
+  SOL: { name: "Solana", slug: "crypto/XTVCSOL", price: 145.78, change: "+2.15", changePercent: "+1.50%" },
+  BNB: { name: "Binance Coin", slug: "crypto/XTVCBNB", price: 587.63, change: "+6.22", changePercent: "+1.07%" },
+  XRP: { name: "Ripple", slug: "crypto/XTVCXRP", price: 0.637, change: "-0.008", changePercent: "-1.24%" },
+  DOGE: { name: "Dogecoin", slug: "crypto/XTVCDOGE", price: 0.153, change: "+0.004", changePercent: "+2.63%" },
+  ADA: { name: "Cardano", slug: "crypto/XTVCADA", price: 0.418, change: "+0.006", changePercent: "+1.46%" }
 };
 
 
