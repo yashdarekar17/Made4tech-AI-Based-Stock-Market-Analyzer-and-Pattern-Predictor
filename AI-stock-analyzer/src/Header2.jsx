@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import stocklogo from './stocklogo.png';
+import stocklogo from './Logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import profileuser from './profileuser.png';
@@ -21,17 +21,17 @@ const Header = () => {
       <div className=" h-20 px-4 py-3 flex items-center justify-between">
        
         <div className="flex items-center space-x-2">
-          <img src={stocklogo} alt="StockSense Logo" className="w-10 h-10" />
-          <h1 className="text-2xl font-bold tracking-wide text-green-400">StockSense AI</h1>
-        </div>
+                 <img src={stocklogo} alt="StockSense Logo" className="w-9 h-9" />
+                 <h1 className="text-2xl font-bold tracking-wide text-white">StockSense AI</h1>
+         </div>
 
         
         <nav className="hidden md:flex space-x-6 text-white">
-          <Link to="/dashboard" className="hover:text-yellow-400 transition">Dashboard</Link>
-          <Link to="/Predictions" className="hover:text-yellow-400 transition">Predictions</Link>
-          <Link to="/Portfolio" className="hover:text-yellow-400 transition">Portfolio</Link>
-          <Link to="/About" className="hover:text-yellow-400 transition">About</Link>
-        </nav>
+                  <Link to="/dashboard" className="hover:text-gray-300 transition">Dashboard</Link>
+                  <Link to="/Predictions" className="hover:text-gray-300 transition">Predictions</Link>
+                  <Link to="/Portfolio" className="hover:text-gray-300 transition">Portfolio</Link>
+                  <Link to="/About" className="hover:text-gray-300 transition">About</Link>
+         </nav>
 
         {/* Right section (Desktop only) */}
         <div className="hidden md:flex items-center space-x-4 relative">
@@ -62,10 +62,11 @@ const Header = () => {
 
           
           <Link to="/Predictions">
-            <button className="bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
-              Get Started
-            </button>
-          </Link>
+               <button className="bg-white hover:bg-gray-300 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                  Get Started
+                </button>
+            </Link>
+          
 
          
           <ThemeToggle />
@@ -89,7 +90,7 @@ const Header = () => {
 
           
           <Link to="/Predictions" onClick={() => setMobileMenuOpen(false)}>
-            <button className="w-full bg-green-500 hover:bg-green-400 text-white font-semibold py-2 rounded-lg transition duration-300">
+            <button className="bg-white hover:bg-gray-300 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
               Get Started
             </button>
           </Link>

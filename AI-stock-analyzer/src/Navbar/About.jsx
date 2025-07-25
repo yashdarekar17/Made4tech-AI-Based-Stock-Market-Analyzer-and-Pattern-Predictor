@@ -6,21 +6,34 @@ const AboutAIPage = () => {
     <>
       <Header/>
 
-      <div className="bg-gray-800 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
+      <div className="bg-gray-900 min-h-screen text-white py-12 px-6 md:px-16 w-full mx-auto">
+        
         <h1 className="text-4xl font-bold text-yellow-400 text-center mb-10">
           How Our AI Predicts Market Trends
         </h1>
 
         <section className="space-y-10 text-lg leading-relaxed text-gray-300">
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">LSTM Models for Time-Series Forecasting</h2>
+            <div className="flex gap-0">
+              <h2 className="text-2xl font-semibold text-white mb-2">LSTM Models for Time-Series Forecasting</h2>
+               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+  <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
+</svg>
+            </div>
+            
             <p>
               Our platform uses Long Short-Term Memory (LSTM) networks — a type of recurrent neural network (RNN) designed to handle time-series data effectively. These models excel at identifying long-term dependencies and patterns within historical stock prices, making them a strong foundation for forecasting market trends.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">Technical Indicators Integration</h2>
+            <div className="flex gap-0">
+              <h2 className="text-2xl font-semibold text-white mb-2">Technical Indicators Integration</h2>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+  <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
+</svg>
+            </div>
+            
             <p>
               To improve prediction accuracy, we integrate a variety of technical indicators into our models. These include:
             </p>
@@ -36,7 +49,13 @@ const AboutAIPage = () => {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">Model Backtesting and Validation</h2>
+            <div className="flex gap">
+              <h2 className="text-2xl font-semibold text-white mb-2">Model Backtesting and Validation</h2>
+               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+  <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
+</svg>
+            </div>
+            
             <p>
               Before deployment, each AI model undergoes rigorous backtesting against historical data. This process involves:
             </p>
@@ -48,7 +67,13 @@ const AboutAIPage = () => {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">Sentiment Analysis on Market News</h2>
+            <div className="flex gap-0">
+               <h2 className="text-2xl font-semibold text-white mb-2">Sentiment Analysis on Market News</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+  <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
+</svg>
+            </div>
+            
             <p>
               In addition to price data, we incorporate real-world sentiment signals using Natural Language Processing (NLP). Our models analyze:
             </p>
@@ -63,7 +88,13 @@ const AboutAIPage = () => {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2">An Integrated AI Framework</h2>
+            <div className="flex gap-0">
+               <h2 className="text-2xl font-semibold text-white mb-2">An Integrated AI Framework</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+  <path d="M9.29 6.71a1 1 0 0 0 0 1.41L13.17 12l-3.88 3.88a1 1 0 0 0 1.41 1.41l4.59-4.59a1 1 0 0 0 0-1.41L10.7 6.7a1 1 0 0 0-1.41.01z"/>
+</svg>
+            </div>
+           
             <p>
               Our approach combines all elements—time-series modeling, technical analysis, sentiment evaluation, and rigorous testing—into a single, unified AI system. This comprehensive pipeline enables us to deliver timely and actionable market predictions, giving users an edge in their trading and investment decisions.
             </p>

@@ -8,12 +8,13 @@ import CryptoSummaryWithChart from "./CryptoSummaryWithChart";
 import MarketSummary from './MarketSummary'
 import {Link} from 'react-router-dom'
 import Chatbot from './Chatbot'
-import homepagevideo from './homepage2.mp4'
+import homepagevideo from './homepagevideo.mp4'
 import Homepage4 from './Homepage4.mp4'
 import Laptop from './Laptop.jpg'
 import Dash from './Dash.jpg'
 import laptop5 from './laptop5.jpg';
 import Phoneimg from './Phoneimg.jpg'
+import Homepage3 from "./Homepage3.jpg";
 
 
 const predictions = [
@@ -49,6 +50,7 @@ const Dashboard = () => {
       
     <Header/>
   <div className="relative w-full aspect-video max-[650px]:hidden">
+    {/* <img src={Homepage3} alt="" srcset="" className="absolute top-0 left-0 w-full h-full object-cover z-0" /> */}
   <video
     src={homepagevideo}
     autoPlay
@@ -73,7 +75,7 @@ const Dashboard = () => {
   loop
   muted
   playsInline
-  className="w-full h-[700px] mt-10 object-cover"
+  className="w-full h-[700px] mt-10 object-cover rounded-xl"
 >
   Your browser does not support the video tag.
 </video>
@@ -141,7 +143,7 @@ const Dashboard = () => {
     </div>
     <div className='flex flex-col items-center justify-center mt-5 text-center'>
         <p className='text-white font-semibold text-center'>Want to see more Predictions?Click below</p>
-       <Link to='/Predictions'> <button className='bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 mb-6'>More Predictions</button></Link>
+       <Link to='/Predictions'> <button className='bg-white hover:bg-gray-300 text-black font-semibold py-2 px-4 rounded mt-4 mb-6'>More Predictions</button></Link>
        
       </div>
     <div className="flex flex-col min-h-screen bg-[#0f172a]">

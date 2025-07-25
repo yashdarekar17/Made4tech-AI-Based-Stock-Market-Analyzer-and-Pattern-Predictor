@@ -37,7 +37,7 @@ const TickerTimeSelector = ({ onSubmit }) => {
       className="bg-gray-800 text-white p-6 rounded-xl shadow-lg max-w-2xl mx-auto mt-10 space-y-4"
     >
       
-      <h2 className="text-2xl font-bold text-yellow-400 text-center">
+      <h2 className="text-2xl font-bold text-white text-center">
          Analyze Stock Trends
       </h2>
 
@@ -47,12 +47,12 @@ const TickerTimeSelector = ({ onSubmit }) => {
           placeholder="Enter Ticker (e.g. AAPL)"
           value={ticker}
           onChange={(e) => setTicker(e.target.value)}
-          className="w-full px-4 py-2 rounded-md bg-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          className="w-full px-4 py-2 rounded-md bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
         />
         <select
           value={timeRange}
           onChange={(e) => setTimeRange(e.target.value)}
-          className="w-full md:w-40 px-4 py-2 rounded-md bg-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          className="w-full md:w-40 px-4 py-2 rounded-md bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
         >
           <option value="1D">1 Day</option>
           <option value="1W">1 Week</option>
@@ -65,7 +65,7 @@ const TickerTimeSelector = ({ onSubmit }) => {
 
       <button
         type="submit"
-        className="w-full bg-yellow-400 text-black font-semibold py-2 rounded-md hover:bg-yellow-500 transition"
+        className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-300 transition"
       >
          Analyze
       </button>
@@ -214,12 +214,12 @@ const Predictions = () => {
         )}
 
         {stockData.length > 0 && (
-          <div className="mt-10 w-[95vw] mx-auto">
+          <div className="mt-10 w-[95vw]  mx-auto">
             <h2 className="text-xl text-center font-semibold mb-4">
                Actual vs Predicted Trend for {selectedTicker}
             </h2>
-            <div className="bg-gray-900 p-6 rounded-xl">
-              <ResponsiveContainer width="100%" height={300}>
+            <div className="bg-black p-6 rounded-xl  mx-auto">
+              <ResponsiveContainer width="100%" height={500}>
               <LineChart data={stockData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" hide />

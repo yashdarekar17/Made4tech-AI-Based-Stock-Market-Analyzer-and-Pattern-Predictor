@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { X } from "lucide-react";
 import axios from "axios";
-import stocklogo from '../stocklogo.png';
+import stocklogo from '../Logo.png';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -33,8 +33,8 @@ const LoginPage = () => {
       {/* Top Logo and Close */}
       <div className="absolute top-6 left-0 w-full px-6 flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <img src={stocklogo} alt="Logo" className="w-8 h-8" />
-          <div className="text-green-400 font-bold text-xl tracking-wide">StocksenseAI</div>
+          <img src={stocklogo} alt="Logo" className="w-7 h-7" />
+          <div className="text-white font-bold text-xl tracking-wide">StocksenseAI</div>
         </div>
         <Link to="/dashboard">
           <X size={28} color="white" className="hover:opacity-70" />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
-import stocklogo from "../stocklogo.png";
+import stocklogo from "../Logo.png";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -45,8 +45,8 @@ const SignupPage = () => {
       {/* Header with logo and close button */}
       <div className="absolute top-6 left-0 w-full px-6 flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <img src={stocklogo} alt="Logo" className="w-8 h-8" />
-          <div className="text-green-400 font-bold text-xl tracking-wide">StocksenseAI</div>
+          <img src={stocklogo} alt="Logo" className="w-7 h-7" />
+          <div className="text-white font-bold text-xl tracking-wide">StocksenseAI</div>
         </div>
 
         <Link to="/dashboard">
@@ -60,7 +60,7 @@ const SignupPage = () => {
       {/* Signup Form */}
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
         <div>
-          <label className="block text-sm text-gray-400 mb-2">Full Name</label>
+          <label className="block text-sm text-gray-400 mb-2">Username</label>
           <input
             type="text"
             name="fullName"
