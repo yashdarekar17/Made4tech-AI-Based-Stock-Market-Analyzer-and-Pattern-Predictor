@@ -136,11 +136,11 @@ const MarketSummary = () => {
 
   return (
     <div className="bg-[#0f172a] p-4 rounded-2xl w-[95vw] mx-auto overflow-x-auto scrollbar-hide">
-  <div className="flex justify-center gap-10 flex-wrap">
+  <div data-aos="fade-down" className="flex justify-center gap-10 flex-wrap">
     {data.map((item, idx) => (
       <div
         key={idx}
-        onClick={()=> navigate(`/chart/${item.symbol}`)}
+        onClick={() => navigate(`/chart/${item.symbol}`)}
         className="hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out cursor-pointer"
       >
         <MarketCard item={item} />
@@ -148,6 +148,7 @@ const MarketSummary = () => {
     ))}
   </div>
 </div>
+
 
 
   );

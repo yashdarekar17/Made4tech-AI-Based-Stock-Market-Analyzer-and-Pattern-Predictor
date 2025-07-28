@@ -59,10 +59,6 @@ const Dashboard = () => {
     className="absolute top-0 left-0 w-full h-full object-cover z-0"
   />
 </div>
-
-
-
-      
    
     <Chatbot/>
     <SummaryCards/>
@@ -113,15 +109,7 @@ const Dashboard = () => {
       />
     </div>
   </div>
-</div>
-
-
-
-
-
-
-
-   
+</div> 
     <span className='  pb-2 mt-10 mb-2  border-b border-white max-w-[97vw] m-auto flex'>
       <h1 className="text-2xl font-bold text-white hover:text-green-400 "> AI Trend Prediction</h1>
       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
@@ -130,7 +118,7 @@ const Dashboard = () => {
 
        
     </span> 
-    <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[85vw] m-auto">
       {predictions.map((p, idx) => (
         <TrendPredictionPanel
           key={idx}

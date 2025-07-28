@@ -21,3 +21,34 @@
     animation: scroll-right 20s linear infinite;
   }
 }
+
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadedown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeup {
+  animation: fadeup 0.6s ease-out forwards;
+}
+
+.fadedown {
+  animation: fadedown 0.6s ease-out forwards;
+}
+

@@ -21,7 +21,7 @@ const TrendPredictionPanel = ({
  
 
   const handlefollow = ()=>{
-    const stockdata = { stock , trend ,confidence}
+    const stockdata = { stock , changePercent ,confidence}
     if(isFollowed){
       dispatch(unfollowedStock(stockdata),
       toast.success(`unfollowed ${stock}`,{
@@ -49,7 +49,7 @@ const TrendPredictionPanel = ({
   };
 
   return (
-    <div className=" bg-gray-800 backdrop-blur text-white p-6 rounded-2xl shadow-md mt-6 w-full max-w-md mx-auto border border-gray-700 ">
+    <div  data-aos="fade-down" className=" bg-gray-800 backdrop-blur text-white p-6 rounded-2xl shadow-md mt-6 w-full max-w-md mx-auto border border-gray-700 ">
 
       <h3 className="text-lg font-semibold mb-4 text-center text-green-400">
          
@@ -85,7 +85,7 @@ const TrendPredictionPanel = ({
   id='followbtn'
   onClick={handlefollow}
   className={`w-1/2 h-10 p-0 max-w-md font-semibold rounded-md 
-    ${isFollowed ? "bg-gray-800 text-white" :"bg-white hover:bg-gray-300 text-black "} 
+    ${isFollowed ? "bg-gray-900 text-white" :"bg-white hover:bg-gray-300 text-black "} 
     hover:opacity-90 transition duration-300 hover:scale-105 cursor-pointer ease-in-out transform `}
 >
   {isFollowed ? 'Following' : 'Follow'}
