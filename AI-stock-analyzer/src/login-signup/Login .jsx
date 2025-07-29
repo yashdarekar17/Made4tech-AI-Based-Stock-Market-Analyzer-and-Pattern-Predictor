@@ -9,23 +9,31 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:8081/api/users/login", {
-        email,
-        password,
-      });
+  // src/login-signup/Login .jsx
 
-      if (res.status === 200) {
-        alert("Successfully logged in");
-        navigate("/dashboard");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert(error.response?.data?.message || "Login failed. Please try again.");
+const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    // The endpoint is now /auth/signIn
+    const response = await axios.post("http://localhost:8081/auth/signIn", {
+      email,
+      password,
+    });
+
+    // If login is successful, the backend sends a JWT token
+    if (response.data.jwt) {
+      localStorage.setItem('jwt', response.data.jwt); // Store the token
+      alert("Successfully logged in");
+      navigate("/dashboard");
+    } else {
+      // Handle cases like two-factor auth if you implement it
+      alert(response.data.message);
     }
-  };
+  } catch (error) {
+    console.error("Login error:", error);
+    alert(error.response?.data?.message || "Login failed. Please try again.");
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-4 relative">

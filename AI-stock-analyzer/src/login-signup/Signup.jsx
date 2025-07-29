@@ -18,26 +18,34 @@ const SignupPage = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
+  // src/login-signup/Signup.jsx
 
-    try {
-      await axios.post("http://localhost:8081/api/users/signup", {
-        fullName: formData.fullName,
-        email: formData.email,
-        password: formData.password
-      });
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  try {
+    // The endpoint is now /auth/signup
+    const response = await axios.post("http://localhost:8081/auth/signup", {
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+    });
+
+    // Store the JWT token from the response
+    if (response.data.jwt) {
+      localStorage.setItem('jwt', response.data.jwt);
       alert("Signup successful");
       navigate("/dashboard");
-    } catch (err) {
-      alert("Signup failed");
-      console.error(err);
     }
-  };
+  } catch (err) {
+    alert("Signup failed: " + (err.response?.data?.message || err.message));
+    console.error(err);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-4 relative">

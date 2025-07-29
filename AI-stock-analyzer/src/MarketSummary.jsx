@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { useNavigate } from "react-router-dom";
 import {
@@ -79,79 +79,61 @@ const MarketCard = ({ item }) => {
 };
 
 const MarketSummary = () => {
-    const data = [
-  {
-    name: "Bitcoin",
-    symbol: "BTC",
-    price: 64890.25,
-    change: 2.34,
-    logo: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
-    color: "#22C55E",
-    sparkline: [64000, 64200, 64500, 64800, 65000, 64890, 64600, 64250, 64000],
-  },
-  {
-    name: "Ethereum",
-    symbol: "ETH",
-    price: 3430.82,
-    change: 1.12,
-    logo: "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
-    color: "#22C55E",
-    sparkline: [3400, 3410, 3425, 3430.82, 3440, 3435, 3420, 3415],
-  },
-  {
-    name: "Solana",
-    symbol: "SOL",
-    price: 168.5,
-    change: -0.45,
-    logo: "https://assets.coingecko.com/coins/images/4128/small/solana.png",
-    color: "#EF4444",
-    sparkline: [170, 169.5, 168.5, 167, 168, 168.5],
-  },
-  {
-    name: "Cardano",
-    symbol: "ADA",
-    price: 0.421,
-    change: 0.37,
-    logo: "https://assets.coingecko.com/coins/images/975/small/cardano.png",
-    color: "#22C55E",
-    sparkline: [0.41, 0.415, 0.418, 0.421, 0.42, 0.419],
-  },
-  {
-    name: "Dogecoin",
-    symbol: "DOGE",
-    price: 0.125,
-    change: -0.23,
-    logo: "https://assets.coingecko.com/coins/images/5/small/dogecoin.png",
-    color: "#EF4444",
-    sparkline: [0.12, 0.124, 0.126, 0.125, 0.124, 0.123],
-  },
-];
+    const [marketData, setMarketData] = useState([]);
+    const navigate = useNavigate();
 
-      const navigate = useNavigate(); 
+    useEffect(() => {
+        const fetchAllCoinData = async () => {
+            try {
+                // 1. Fetch the list of top coins
+                const coinListResponse = await fetch("http://localhost:8081/coins?page=1");
+                const coinList = await coinListResponse.json();
 
-      
-   
-  
-      
+                // 2. For each coin, fetch its market chart data
+                const detailedCoinData = await Promise.all(
+                    coinList.map(async (coin) => {
+                        const chartResponse = await fetch(`http://localhost:8081/coins/${coin.id}/chart?days=7`);
+                        const chartData = await chartResponse.json();
+                        
+                        // Extract just the prices for the sparkline
+                        const sparkline = chartData.prices.map(p => p[1]);
 
-  return (
-    <div className="bg-[#0f172a] p-4 rounded-2xl w-[95vw] mx-auto overflow-x-auto scrollbar-hide">
-  <div data-aos="fade-down" className="flex justify-center gap-10 flex-wrap">
-    {data.map((item, idx) => (
-      <div
-        key={idx}
-        onClick={() => navigate(`/chart/${item.symbol}`)}
-        className="hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out cursor-pointer"
-      >
-        <MarketCard item={item} />
-      </div>
-    ))}
-  </div>
-</div>
+                        return {
+                            name: coin.name,
+                            symbol: coin.symbol.toUpperCase(),
+                            price: coin.current_price,
+                            change: coin.price_change_percentage_24h.toFixed(2),
+                            logo: coin.image,
+                            color: coin.price_change_percentage_24h >= 0 ? "#22C55E" : "#EF4444",
+                            sparkline: sparkline,
+                        };
+                    })
+                );
+                setMarketData(detailedCoinData);
 
+            } catch (error) {
+                console.error("Failed to fetch market data:", error);
+            }
+        };
 
+        fetchAllCoinData();
+    }, []);
 
-  );
+    return (
+        <div className="bg-[#0f172a] p-4 rounded-2xl w-[95vw] mx-auto overflow-x-auto scrollbar-hide">
+            <div data-aos="fade-down" className="flex justify-center gap-10 flex-wrap">
+                {marketData.map((item, idx) => (
+                    <div
+                        key={idx}
+                        onClick={() => navigate(`/chart/${item.symbol}`)}
+                        className="hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out cursor-pointer"
+                    >
+                        <MarketCard item={item} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default MarketSummary;

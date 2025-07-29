@@ -134,53 +134,29 @@ const Predictions = () => {
 
   
 
-  const fetchStockData = async ({ ticker }) => {
-  const API_KEY = "f323836bb7854ee8b6062cbfd995a0ac"; // Replace with your actual API key
-  const interval = "1day";
-
+  const fetchStockData = async ({ ticker, timeRange }) => {
   try {
     setLoading(true);
     setTrendInfo(null);
 
-    const url = `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=${interval}&outputsize=100&apikey=${API_KEY}`;
-
-    const response = await axios.get(url);
-    const data = response.data;
-
-    if (!data.values || data.status === "error") {
-      throw new Error(data.message || "Invalid stock data");
-    }
-
-    const chartData = data.values
-      .reverse()
-      .map((entry, i) => {
-        const actual = parseFloat(entry.close);
-        const predicted = actual * (1 + 0.01 * Math.sin(i / 5));
-        return {
-          date: entry.datetime,
-          actual: parseFloat(actual.toFixed(2)),
-          predicted: parseFloat(predicted.toFixed(2)),
-        };
-      });
-
-    setStockData(chartData);
-    setSelectedTicker(ticker);
-
-    const randomConfidence = Math.floor(Math.random() * 20) + 80;
-    const trend = chartData.at(-1).actual > chartData[0].actual ? "Uptrend" : "Downtrend";
-    setTrendInfo({
-      trend,
-      confidence: randomConfidence,
-      companyName: ticker,
+    const response = await axios.post("http://localhost:8080/api/predict", {
+      ticker,
+      timeRange,
     });
 
+    const { stockData, trendInfo } = response.data;
+
+    setStockData(stockData);
+    setTrendInfo(trendInfo);
+    setSelectedTicker(ticker);
   } catch (err) {
-    console.error("Error fetching stock data:", err);
+    console.error("Error fetching stock data from backend:", err);
     alert("Error fetching stock data: " + err.message);
   } finally {
     setLoading(false);
   }
 };
+
 
 
   const pieData = [
@@ -200,7 +176,7 @@ const Predictions = () => {
     <>
       <Header />
       <div className="bg-gray-900  p-6 text-white">
-        <TickerTimeSelector onSubmit={fetchStockData} />
+        <TickerTimeSelector onSubmit={fetchStockData}/>
 
         {loading && <p className="text-center mt-6">⏳ Loading...</p>}
 

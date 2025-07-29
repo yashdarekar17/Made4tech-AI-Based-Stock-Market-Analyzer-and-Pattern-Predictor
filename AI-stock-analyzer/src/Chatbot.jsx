@@ -11,6 +11,9 @@ function Chatbot() {
           alt="Chatbot"
           className="w-full h-full rounded-full object-cover"
         />
+        <div className=''>
+          
+        </div>
       </div>
     </>
   );
