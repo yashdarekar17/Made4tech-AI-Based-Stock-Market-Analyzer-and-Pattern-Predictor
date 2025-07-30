@@ -39,7 +39,7 @@ const handleSubmit = async (e) => {
     if (response.data.jwt) {
       localStorage.setItem('jwt', response.data.jwt);
       alert("Signup successful");
-      navigate("/dashboard");
+      navigate("/");
     }
   } catch (err) {
     alert("Signup failed: " + (err.response?.data?.message || err.message));

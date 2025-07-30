@@ -18,6 +18,7 @@ import CheckstocksChart from './CheckStockChart'
 import { useEffect } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Profile from './Profile'
 
 
 
@@ -46,6 +47,7 @@ const App = () => {
       <Route path='/chat' element={<Chatbot/>}></Route>
       <Route path='/Followingpage' element={<Followingpage/>}></Route>
      <Route path="/chart/:symbol" element={<CheckstocksChart />} />
+     <Route path='/Profile' element={<Profile/>}/>
 
 
     </Routes>

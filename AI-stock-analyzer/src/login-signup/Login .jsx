@@ -7,6 +7,7 @@ import stocklogo from '../Logo.png';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+ 
   const navigate = useNavigate();
 
   // src/login-signup/Login .jsx
@@ -23,8 +24,20 @@ const handleLogin = async (e) => {
     // If login is successful, the backend sends a JWT token
     if (response.data.jwt) {
       localStorage.setItem('jwt', response.data.jwt); // Store the token
-      alert("Successfully logged in");
-      navigate("/dashboard");
+       alert("OTP sent successfully to your email" );
+      const otp = prompt("Enter the otp ");
+      const otpResponse = await axios.post("http://localhost:8081/auth/verify-otp",{
+        email,
+        otp
+      })
+      if(otpResponse.data.verified){
+         console.log("Otp is",otp);
+            navigate("/dashboard");
+     alert("Successfully logged in");
+      }else{
+        console.log("Otp is not valid")
+      }
+   
     } else {
       // Handle cases like two-factor auth if you implement it
       alert(response.data.message);

@@ -139,7 +139,7 @@ const Predictions = () => {
     setLoading(true);
     setTrendInfo(null);
 
-    const response = await axios.post("http://localhost:8080/api/predict", {
+    const response = await axios.post("http://localhost:8081/api/predict", {
       ticker,
       timeRange,
     });

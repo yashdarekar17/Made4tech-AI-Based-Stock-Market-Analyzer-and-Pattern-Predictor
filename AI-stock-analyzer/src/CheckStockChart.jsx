@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header2";
 import Footer from "./Footer";
+import {toast} from "react-toastify"
 
 const CheckStocksChart = () => {
  const stockDetailsMap = {
@@ -63,6 +64,43 @@ const CheckStocksChart = () => {
       container.appendChild(script);
     }
   }, [symbol]);
+  const amount = 100 *100; 
+  const currency = "INR";
+  const receiptID = "receipt_order_123";
+
+  const PaymentHandler = async (e) => {
+  e.preventDefault();
+  console.log("💥 PaymentHandler clicked!");
+
+  try {
+  
+    const response = await fetch(`/api/payment/RAZORPAY/amount/${amount}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${your_jwt_token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create payment link");
+    }
+
+    const paymentLinkResponse = await response.json();
+    console.log(" Payment link created:", paymentLinkResponse);
+
+    if (!paymentLinkResponse.payment_url) {
+      throw new Error("Payment URL missing in response");
+    }
+
+   
+    window.location.href = paymentLinkResponse.payment_url;
+
+  } catch (error) {
+    console.error(" Payment error:", error.message);
+    toast.error(error.message || "Something went wrong");
+  }
+};
 
   return (
     <>
@@ -132,15 +170,11 @@ const CheckStocksChart = () => {
         ></div>
 
         <div className="mt-10 flex flex-col lg:flex-row items-center justify-center gap-6">
-          <a
-            href={`https://www.tradingview.com/chart/?symbol=${symbol}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg w-40">
+          
+            <button onClick={PaymentHandler} className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg w-40">
               Buy
             </button>
-          </a>
+         
           <a
             href={`https://www.tradingview.com/chart/?symbol=${symbol}`}
             target="_blank"
